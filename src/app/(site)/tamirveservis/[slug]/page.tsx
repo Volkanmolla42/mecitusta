@@ -8,6 +8,7 @@ import {
   Clock,
   Cpu,
   Phone,
+  Play,
   ShieldCheck,
   UserCheck,
 } from "lucide-react";
@@ -31,6 +32,8 @@ import { getWhatsAppUrl } from "@/lib/whatsapp";
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+const DIRECT_VIDEO_URL_PATTERN = /\.(mp4|webm|ogg|mov)(?:$|[?#])/i;
 
 export async function generateStaticParams() {
   try {
@@ -146,6 +149,10 @@ export default async function ServiceDetailPage({ params }: Props) {
     },
   };
 
+  const isDirectVideo = service.videoUrl
+    ? DIRECT_VIDEO_URL_PATTERN.test(service.videoUrl)
+    : false;
+
   return (
     <div className="bg-slate-50 text-slate-900 min-h-screen">
       <script
@@ -207,7 +214,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           {/* Sol Kolon (İçerik) */}
           <div className="lg:col-span-2 space-y-8">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-slate-200 bg-dark-bg shadow-xs">
-              {service.videoUrl ? (
+              {service.videoUrl && isDirectVideo ? (
                 <video
                   src={service.videoUrl}
                   poster={service.image}
@@ -217,13 +224,29 @@ export default async function ServiceDetailPage({ params }: Props) {
                   className="h-full w-full object-cover"
                 />
               ) : (
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 800px"
-                  className="object-cover"
-                />
+                <>
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 800px"
+                    className="object-cover"
+                  />
+                  {service.videoUrl && (
+                    <a
+                      href={service.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${service.title} videosunu izle`}
+                      className="absolute inset-0 flex items-center justify-center bg-black/35 transition-colors hover:bg-black/45"
+                    >
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-lg">
+                        <Play className="h-4 w-4 fill-current" aria-hidden="true" />
+                        Videoyu İzle
+                      </span>
+                    </a>
+                  )}
+                </>
               )}
             </div>
 

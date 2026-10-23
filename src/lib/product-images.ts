@@ -1,4 +1,4 @@
-export const PRODUCT_IMAGE_PLACEHOLDER = "/images/product-image-preparing.webp";
+export const PRODUCT_IMAGE_PLACEHOLDER = "/images/products/product-image-preparing.webp";
 export const PRODUCT_IMAGE_PLACEHOLDER_ALT = "Ürün görseli hazırlanıyor";
 
 export function hasProductImage(images?: readonly string[]) {

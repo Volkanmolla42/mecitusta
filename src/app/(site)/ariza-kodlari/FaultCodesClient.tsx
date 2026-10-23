@@ -128,7 +128,7 @@ export default function FaultCodesClient({ codes }: { codes: FaultCodeItem[] }) 
   return (
     <div className="min-h-screen bg-slate-50">
       <HeroBanner
-        src="/images/obd-scanner-hero.jpg"
+        src="/images/obd/obd-scanner-hero.jpg"
         alt="OBD Arıza Kodları ve Teşhis"
         eyebrow="OBD Arıza Teşhisi"
         title="OBD Arıza Kodları"
@@ -287,7 +287,7 @@ export default function FaultCodesClient({ codes }: { codes: FaultCodeItem[] }) 
             <div className="grid grid-cols-1 items-center gap-8 p-6 sm:p-10 lg:grid-cols-12 lg:gap-12">
               <div className="relative aspect-video w-full overflow-hidden rounded-2xl lg:col-span-5 border border-white/10 shadow-lg">
                 <Image
-                  src="/images/obd-device-detail.jpg"
+                  src="/images/obd/obd-device-detail.jpg"
                   alt="OBD Cihazı Teşhis Ekranı"
                   fill
                   className="object-cover"

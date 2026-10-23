@@ -70,7 +70,7 @@ export default function BlogArticle({ blog, relatedBlogs }: BlogArticleProps) {
         <div className="my-10 p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-center gap-4 sm:gap-5">
           <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden border border-slate-200/90 bg-white p-1.5 shrink-0 shadow-xs">
             <Image
-              src="/images/logo-mark.webp"
+              src="/images/logos/logo-mark.webp"
               alt="Mecit Usta"
               width={56}
               height={56}

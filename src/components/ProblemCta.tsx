@@ -8,7 +8,7 @@ export default function ProblemCta() {
     <section className="relative overflow-hidden border-b border-white/10 bg-dark-bg text-white">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-full select-none md:w-[58%]">
         <Image
-          src="/images/cta-opel-banner.webp"
+          src="/images/heroes/cta-opel-banner.webp"
           alt="Opel araç"
           fill
           sizes="(min-width: 768px) 58vw, 100vw"

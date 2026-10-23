@@ -8,7 +8,7 @@ export default function OpelHero() {
     <section className="relative isolate overflow-hidden border-b border-slate-800 bg-dark-bg text-white">
       <div className="pointer-events-none absolute inset-0 z-0 select-none">
         <Image
-          src="/images/hero-opel-beyin-v3.webp"
+          src="/images/heroes/hero-opel-beyin-v3.webp"
           alt="Opel beyin, Easytronic ve Magneti Marelli üniteleri"
           fill
           preload

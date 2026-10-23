@@ -7,14 +7,14 @@ export const SITE_URL = new URL(
 ).origin;
 export const SITE_DESCRIPTION =
   "ECU, ABS, airbag ve diğer oto elektronik parçaları. Parça uyumluluğu, stok ve sipariş bilgisi için Mecit Usta ile iletişime geçin.";
-export const SEO_IMAGE = "/images/seo-cover.webp";
+export const SEO_IMAGE = "/images/seo/seo-cover.webp";
 
 export const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_URL,
-  logo: new URL("/images/logo-mark.webp", SITE_URL).toString(),
+  logo: new URL("/images/logos/logo-mark.webp", SITE_URL).toString(),
 };
 
 export function absoluteUrl(path: string): string {

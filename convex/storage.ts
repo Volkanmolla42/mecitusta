@@ -1,4 +1,5 @@
-import { mutation, type QueryCtx } from "./_generated/server";
+import { mutation, query, type QueryCtx } from "./_generated/server";
+import { v } from "convex/values";
 import type { Id } from "./_generated/dataModel";
 import { requireAdmin } from "./authz";
 
@@ -11,5 +12,15 @@ export const generateUploadUrl = mutation({
   handler: async (ctx) => {
     await requireAdmin(ctx);
     return await ctx.storage.generateUploadUrl();
+  },
+});
+
+export const getStorageUrls = query({
+  args: { storageIds: v.array(v.id("_storage")) },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx);
+    return await Promise.all(
+      args.storageIds.map((storageId) => storageUrl(ctx, storageId)),
+    );
   },
 });

@@ -145,7 +145,7 @@ Sistem, Google Fonts üzerinden sağlanan modern ve okunaklı iki font ailesini 
 - **Bileşenler:**
   - `Input`: [`src/components/ui/input.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/input.tsx) — 44px dokunmatik hedefli, odak halkalı metin girişi.
   - `Textarea`: [`src/components/ui/textarea.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/textarea.tsx) — Çok satırlı açıklamalar ve notlar.
-  - `SearchableCombobox`: [`src/components/ui/searchable-combobox.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/searchable-combobox.tsx) — Klavye destekli, filtrelenebilir tekli/çoklu seçim açılır kutusu.
+  - `SearchableMultiSelect`: [`src/components/ui/searchable-multi-select.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/searchable-multi-select.tsx) — Klavye destekli, filtrelenebilir çoklu seçim açılır kutusu.
   - `OemSearchBar`: [`src/components/OemSearchBar.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/OemSearchBar.tsx) — Gerçek zamanlı arama, OEM kodu eşleştirme ve önizleme kartları sunan küresel arama motoru bileşeni (`variant: "hero" | "header"`).
 - **Kullanım Kılavuzu:**
   - Arama alanlarında kullanıcıya hızlı temizleme butonu (`✕`) ve büyük harf monospaced OEM desteği sunun.
@@ -220,7 +220,7 @@ Uygulama kabuğu, projenin tüm sayfalarını saran temel iskelettir:
 | :--- | :--- | :---: | :---: | :---: |
 | **Eylemler (Actions)** | `Button`, `IconButton`, `Link` | %100 (`@theme`, CVA) | %100 | Tamamlandı |
 | **Kimlik & Durum** | `Badge` (8 varyant) | %100 | %100 | Tamamlandı |
-| **Formlar & Arama** | `Input`, `Textarea`, `SearchableCombobox`, `OemSearchBar` | %100 | %100 | Tamamlandı |
+| **Formlar & Arama** | `Input`, `Textarea`, `SearchableMultiSelect`, `OemSearchBar` | %100 | %100 | Tamamlandı |
 | **Katalog & Medya** | `ProductCard`, `ModernImageZoom` | %100 | %100 | Tamamlandı |
 | **Geri Bildirim & Modal**| `LiveChatWidget`, `FloatingWhatsApp`, `Dialog` | %100 | %100 | Tamamlandı |
 | **Uygulama Kabuğu (App Shell)**| `SkipLink`, `Header`, `Main`, `Footer`, Yüzen Katman | %100 | %100 | Tamamlandı |

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "OBD Arıza Kodları ve Anlamları | Mecit Usta",
     description:
       "Aracınızın OBD-II arıza kodlarını öğrenin, anlamlarını keşfedin, doğru oto elektronik çözümlerine ulaşın.",
-    images: ["/images/obd-scanner-hero.jpg"],
+    images: ["/images/obd/obd-scanner-hero.jpg"],
   },
 };
 

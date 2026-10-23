@@ -179,7 +179,7 @@ export default function AdminLayout({
               onClick={() => setMobileMenuOpen(false)}
             >
               <Image
-                src="/images/logo_transparent.webp"
+                src="/images/logos/logo_transparent.webp"
                 alt="Berat Elektronik"
                 width={682}
                 height={120}

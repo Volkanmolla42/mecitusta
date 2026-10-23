@@ -5,9 +5,7 @@ import Image from "next/image";
 import {
   CheckCircle2,
   Loader2,
-  Trash2,
   Upload,
-  Video,
   X,
 } from "lucide-react";
 import { useMutation } from "convex/react";
@@ -23,7 +21,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { slugify } from "@/app/admin/admin-utils";
-import { uploadImageToConvex, uploadLocalVideo } from "@/lib/image-upload";
+import { uploadAdminImage } from "@/lib/admin-uploads";
 import { useObjectUrlPreview } from "@/lib/use-object-url-preview";
 import { triggerRevalidate } from "@/lib/revalidate";
 
@@ -79,13 +77,10 @@ function ServiceFormModalContent({
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
   const [uploading, setUploading] = useState(false);
-  const [uploadingVideo, setUploadingVideo] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const videoInputRef = useRef<HTMLInputElement>(null);
   const { create: createPreview } = useObjectUrlPreview();
 
-  const generateUploadUrl = useMutation(api.storage.generateUploadUrl);
   const createService = useMutation(api.services.create);
   const updateService = useMutation(api.services.update);
 
@@ -95,7 +90,7 @@ function ServiceFormModalContent({
     setUploading(true);
     setError("");
     try {
-      const storageId = await uploadImageToConvex(file, generateUploadUrl);
+      const { storageId } = await uploadAdminImage(file);
       setImageStorageId(storageId);
       setImage(createPreview(file));
     } catch (err: unknown) {
@@ -108,34 +103,6 @@ function ServiceFormModalContent({
       setUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = "";
     }
-  };
-
-  const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setUploadingVideo(true);
-    setError("");
-    try {
-      const uploadedUrl = await uploadLocalVideo(
-        file,
-        service?.slug || "service",
-      );
-      setVideoUrl(uploadedUrl);
-    } catch (err: unknown) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Video yüklenirken bir hata oluştu.",
-      );
-    } finally {
-      setUploadingVideo(false);
-      if (videoInputRef.current) videoInputRef.current.value = "";
-    }
-  };
-
-  const handleRemoveVideo = () => {
-    setVideoUrl("");
-    if (videoInputRef.current) videoInputRef.current.value = "";
   };
 
   const handleAddFeature = () => {
@@ -165,6 +132,7 @@ function ServiceFormModalContent({
     const order =
       parseInt((formData.get("order") as string) || "1", 10) || 1;
     const isActive = formData.get("isActive") === "on";
+    const trimmedVideoUrl = videoUrl.trim();
 
     if (!title) {
       setError("Servis başlığı zorunludur.");
@@ -181,6 +149,17 @@ function ServiceFormModalContent({
     if (!fullDesc) {
       setError("Detaylı açıklama zorunludur.");
       return;
+    }
+    if (trimmedVideoUrl) {
+      try {
+        const parsed = new URL(trimmedVideoUrl);
+        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+          throw new Error("invalid");
+        }
+      } catch {
+        setError("Geçerli bir video bağlantısı girin.");
+        return;
+      }
     }
     if (!imageStorageId) {
       setError("Bir görsel yükleyin.");
@@ -202,7 +181,7 @@ function ServiceFormModalContent({
           shortDesc,
           fullDesc,
           imageStorageId,
-          videoUrl: videoUrl || undefined,
+          videoUrl: trimmedVideoUrl || undefined,
           features: allFeatures.map((f) => f.trim()).filter(Boolean),
           order,
           isActive,
@@ -401,111 +380,28 @@ function ServiceFormModalContent({
           </div>
         </div>
 
-        {/* Video Yükleme Alanı */}
+        {/* Video Linki */}
         <div className="space-y-2">
           <label
             htmlFor="service-video"
             className="text-xs font-semibold text-slate-700 block"
           >
-            Tanıtım / İşlem Videosu (İsteğe Bağlı)
+            Tanıtım / İşlem Videosu Linki (İsteğe Bağlı)
           </label>
-          <input
+          <Input
             id="service-video"
-            type="file"
-            ref={videoInputRef}
-            onChange={handleVideoUpload}
-            accept="video/mp4,video/webm,video/quicktime,video/ogg"
-            className="hidden"
+            type="url"
+            inputMode="url"
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+            placeholder="https://.../video.mp4 veya video sayfası linki"
+            className="rounded-xl text-xs"
           />
-
-          {videoUrl ? (
-            <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 space-y-3">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-1 text-xs font-medium text-emerald-700">
-                    <CheckCircle2 className="h-3.5 w-3.5" />
-                    <span>Video Yüklendi</span>
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2 shrink-0">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    disabled={uploadingVideo}
-                    onClick={() => videoInputRef.current?.click()}
-                    className="h-8 rounded-xl text-xs gap-1.5 cursor-pointer bg-white"
-                  >
-                    {uploadingVideo ? (
-                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    ) : (
-                      <Upload className="h-3.5 w-3.5" />
-                    )}
-                    <span>
-                      {uploadingVideo ? "Yükleniyor..." : "Değiştir"}
-                    </span>
-                  </Button>
-
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={handleRemoveVideo}
-                    className="h-8 rounded-xl text-xs gap-1.5 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200 cursor-pointer bg-white"
-                  >
-                    <Trash2 className="h-3.5 w-3.5" />
-                    <span>Kaldır</span>
-                  </Button>
-                </div>
-              </div>
-
-              <div className="relative aspect-video w-full max-w-sm mx-auto overflow-hidden rounded-xl border border-slate-300 bg-slate-950 shadow-xs">
-                <video
-                  src={videoUrl}
-                  controls
-                  playsInline
-                  className="h-full w-full object-contain"
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center justify-between gap-3 rounded-2xl border border-dashed border-slate-300 bg-slate-50/60 p-4 transition-colors hover:border-amber-400 hover:bg-amber-50/30">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white border border-slate-200 text-amber-600 shadow-xs">
-                  <Video className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-slate-800">
-                    {uploadingVideo
-                      ? "Video yükleniyor..."
-                      : "İşlem veya Tanıtım Videosu Ekle"}
-                  </p>
-                  <p className="text-[11px] text-slate-500">
-                    MP4, WebM veya MOV (Maksimum 100 MB)
-                  </p>
-                </div>
-              </div>
-
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                disabled={uploadingVideo}
-                onClick={() => videoInputRef.current?.click()}
-                className="rounded-xl text-xs gap-1.5 cursor-pointer bg-white shrink-0"
-              >
-                {uploadingVideo ? (
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                ) : (
-                  <Upload className="h-3.5 w-3.5" />
-                )}
-                <span>
-                  {uploadingVideo ? "Yükleniyor..." : "Video Seç"}
-                </span>
-              </Button>
-            </div>
-          )}
+          <p className="text-[11px] leading-relaxed text-slate-500">
+            Doğrudan MP4, WebM, OGG veya MOV bağlantısı verirseniz sayfada
+            oynatılır. YouTube, Instagram gibi sayfa linkleri yeni sekmede
+            açılır.
+          </p>
         </div>
 
         {/* Hizmet Maddeleri */}

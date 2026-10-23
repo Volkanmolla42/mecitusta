@@ -49,7 +49,7 @@ export default function LoginPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link href="/" className="inline-block">
           <Image
-            src="/images/logo.webp"
+            src="/images/logos/logo.webp"
             alt="Berat Elektronik"
             width={700}
             height={381}

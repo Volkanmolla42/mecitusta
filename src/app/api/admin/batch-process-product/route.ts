@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
-import * as path from "path";
-import { mkdir, writeFile } from "fs/promises";
 import sharp from "sharp";
 import {
   getVisionLookupSystemInstruction,
@@ -11,14 +9,14 @@ import {
   DEFAULT_GEMINI_MODELS,
 } from "@/lib/ai/oem-assistant";
 import { requireAdminApiRequest } from "@/lib/auth/admin-api";
+import {
+  IMAGE_MIME_TYPES,
+  MAX_IMAGE_FILE_SIZE,
+  MAX_IMAGE_FILE_SIZE_MB,
+  MAX_IMAGES_PER_REQUEST,
+  uploadImagesToConvex,
+} from "@/lib/convex-image-upload";
 import { sanitizeTurkishText } from "@/lib/utils";
-
-const IMAGE_FORMATS = {
-  jpeg: { extension: ".jpg", mimeType: "image/jpeg" },
-  png: { extension: ".png", mimeType: "image/png" },
-  webp: { extension: ".webp", mimeType: "image/webp" },
-  avif: { extension: ".avif", mimeType: "image/avif" },
-} as const;
 
 export async function POST(req: NextRequest) {
   const unauthorized = await requireAdminApiRequest(req);
@@ -59,23 +57,39 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (files.length > MAX_IMAGES_PER_REQUEST) {
+      return NextResponse.json(
+        { error: `Tek istekte en fazla ${MAX_IMAGES_PER_REQUEST} görsel işlenebilir.` },
+        { status: 413 }
+      );
+    }
+
+    if (files.some((file) => file.size > MAX_IMAGE_FILE_SIZE)) {
+      return NextResponse.json(
+        { error: `Her görsel en fazla ${MAX_IMAGE_FILE_SIZE_MB} MB olabilir.` },
+        { status: 400 }
+      );
+    }
+
     const validatedFiles = await Promise.all(files.map(async (file) => {
       const buffer = Buffer.from(await file.arrayBuffer());
       const metadata = await sharp(buffer, { failOn: "error" }).metadata();
-      const format = metadata.format && IMAGE_FORMATS[metadata.format as keyof typeof IMAGE_FORMATS];
-      if (!format) {
+      const mimeType = metadata.format
+        ? IMAGE_MIME_TYPES[metadata.format as keyof typeof IMAGE_MIME_TYPES]
+        : undefined;
+      if (!mimeType) {
         throw new Error("Yalnızca JPEG, PNG, WebP veya AVIF görseller desteklenir.");
       }
-      return { buffer, format };
+      return { buffer, mimeType };
     }));
 
     // 1. İlk 4 görseli AI Vision analizi için bellekteki Buffer'dan hazırla
     const imageParts: { inlineData: { data: string; mimeType: string } }[] = [];
-    for (let i = 0; i < Math.min(files.length, 4); i++) {
+    for (let i = 0; i < Math.min(validatedFiles.length, 4); i++) {
       imageParts.push({
         inlineData: {
           data: validatedFiles[i].buffer.toString("base64"),
-          mimeType: validatedFiles[i].format.mimeType,
+          mimeType: validatedFiles[i].mimeType,
         },
       });
     }
@@ -143,29 +157,11 @@ ${brandsStr}`;
         : (parsedData.title || `${cleanBrand} ${detectedOem} Oto Elektronik Beyin`)
     );
 
-    // 3. Görselleri Yapay Zekanın Tespit Ettiği OEM Numarasıyla Sisteme Kaydet
-    const uploadDir = path.join(process.cwd(), "public", "uploads", "products");
-    const publicBasePath = "/uploads/products";
-
-    await mkdir(uploadDir, { recursive: true });
-
-    const uploadedUrls: string[] = [];
-    const cleanShelf = shelfCode.replace(/[^a-z0-9]/gi, "_");
-    const cleanOem = isDraft
-      ? "taslak"
-      : detectedOem.replace(/[^a-z0-9]/gi, "_").replace(/^_+|_+$/g, "").toUpperCase();
-    const timestamp = Date.now();
-    const uniqueSalt = Math.random().toString(36).substring(2, 7);
-
-    for (let i = 0; i < files.length; i++) {
-      const { buffer, format } = validatedFiles[i];
-      const ext = format.extension;
-      const fileName = `product_${cleanOem}_${cleanShelf}_${timestamp}_${uniqueSalt}_${i + 1}${ext}`;
-      const filePath = path.join(uploadDir, fileName);
-
-      await writeFile(filePath, buffer);
-      uploadedUrls.push(`${publicBasePath}/${fileName}`);
-    }
+    // 3. Görselleri optimize edip Convex storage'a yükle
+    const uploaded = await uploadImagesToConvex(
+      validatedFiles.map((file) => file.buffer),
+    );
+    const uploadedUrls = uploaded.map((image) => image.url);
 
     return NextResponse.json({
       success: true,

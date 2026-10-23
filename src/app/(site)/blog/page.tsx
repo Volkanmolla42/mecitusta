@@ -71,7 +71,7 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <HeroBanner
-        src="/images/chronic-faults-hero.jpg"
+        src="/images/heroes/chronic-faults-hero.jpg"
         alt="Oto Elektronik Uzmanlığı"
         eyebrow="Mecit Usta Blog"
         title="Kronik Arızalar ve Çözümleri"

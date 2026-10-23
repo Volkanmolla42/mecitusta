@@ -21,6 +21,7 @@ import {
   type ProductFileGroup,
 } from "./import-files";
 import { sanitizeTurkishText } from "@/lib/utils";
+import { uploadAdminImages } from "@/lib/admin-uploads";
 import { Button } from "@/components/ui/button";
 import AdminPageHeader from "@/components/admin/AdminPageHeader";
 import { triggerRevalidate } from "@/lib/revalidate";
@@ -186,22 +187,13 @@ export default function BatchImportPage() {
       const existing = shelfCode
         ? await convex.query(api.products.getByShelfCode, { shelfCode })
         : null;
-      // Disk üzerindeki görsel dosyasının gerçekten var olup olmadığını (silinip silinmediğini) kontrol et
-      let hasValidImages = false;
-      if (existing?.images && existing.images.length > 0) {
-        try {
-          const checkRes = await fetch(existing.images[0], { method: "HEAD" });
-          hasValidImages = checkRes.ok;
-        } catch {
-          hasValidImages = false;
-        }
-      }
+      const hasValidImages = Boolean(existing?.images?.length);
 
       const isAlreadyComplete = Boolean(
         existing?.oemNumber && existing.title && existing.oemNumber.trim() && hasValidImages,
       );
 
-      // Eğer ürünün her şeyi tamsa ve görselleri de diskte gerçekten mevcutsa AI çalıştırmadan atla
+      // Eğer ürünün her şeyi tamsa ve görselleri varsa AI çalıştırmadan atla
       if (skipExisting && isAlreadyComplete && existing) {
         setProductGroups((prev) =>
           prev.map((group, groupIndex) =>
@@ -379,15 +371,7 @@ export default function BatchImportPage() {
         ? await convex.query(api.products.getByShelfCode, { shelfCode })
         : null;
 
-      let hasValidImages = false;
-      if (existing?.images && existing.images.length > 0) {
-        try {
-          const checkRes = await fetch(existing.images[0], { method: "HEAD" });
-          hasValidImages = checkRes.ok;
-        } catch {
-          hasValidImages = false;
-        }
-      }
+      const hasValidImages = Boolean(existing?.images?.length);
 
       if (skipExisting && existing && hasValidImages) {
         setProductGroups((prev) =>
@@ -412,25 +396,9 @@ export default function BatchImportPage() {
       }
 
       // 1. Görselleri yükle
-      const uploadedUrls: string[] = [];
-      const formData = new FormData();
-      for (const file of item.files) {
-        formData.append("files", file, file.name);
-      }
-
-      const uploadRes = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!uploadRes.ok) {
-        throw new Error("Görseller yüklenemedi.");
-      }
-
-      const uploadData = await uploadRes.json();
-      if (Array.isArray(uploadData.urls)) {
-        uploadedUrls.push(...uploadData.urls);
-      }
+      const uploadedUrls = (await uploadAdminImages(item.files)).map(
+        (image) => image.url,
+      );
 
       // 2. Eğer ürün zaten sistemde varsa yalnızca görsellerini ekle
       if (existing) {

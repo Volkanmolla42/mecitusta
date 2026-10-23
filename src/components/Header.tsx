@@ -37,7 +37,7 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between sm:h-[72px]">
           <Link href="/" aria-label="Berat Elektronik ana sayfa" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none">
             <Image
-              src="/images/logo_dark.webp"
+              src="/images/logos/logo_dark.webp"
               alt="Berat Elektronik ana sayfa"
               width={682}
               height={120}

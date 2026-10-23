@@ -37,6 +37,20 @@ describe("Convex image storage", () => {
     ).resolves.toContain("/api/storage/upload");
   });
 
+  test("storage URLs require an admin session", async () => {
+    const { t, admin, storeImage } = await fixture();
+    const storageId = await storeImage();
+
+    await expect(
+      t.query(api.storage.getStorageUrls, { storageIds: [storageId] }),
+    ).rejects.toThrow("Yetkisiz erişim.");
+
+    const urls = await admin.query(api.storage.getStorageUrls, {
+      storageIds: [storageId],
+    });
+    expect(urls[0]).toContain("/api/storage/");
+  });
+
   test("blog cover is stored, replaced and deleted with the blog", async () => {
     const { t, admin, storeImage } = await fixture();
     const firstImage = await storeImage();
@@ -83,7 +97,7 @@ describe("Convex image storage", () => {
       shortDesc: "Kısa",
       fullDesc: "Detay",
       imageStorageId: firstImage,
-      videoUrl: "/uploads/services/abs.mp4",
+      videoUrl: "https://example.com/abs.mp4",
       features: [],
       order: 1,
       isActive: true,
@@ -93,7 +107,7 @@ describe("Convex image storage", () => {
       slug: "abs-tamiri",
     });
     expect(publicService?.image).toContain("/api/storage/");
-    expect(publicService?.videoUrl).toBe("/uploads/services/abs.mp4");
+    expect(publicService?.videoUrl).toBe("https://example.com/abs.mp4");
 
     const secondImage = await storeImage();
     await admin.mutation(api.services.update, {
@@ -103,7 +117,7 @@ describe("Convex image storage", () => {
       shortDesc: "Kısa",
       fullDesc: "Detay",
       imageStorageId: secondImage,
-      videoUrl: "/uploads/services/abs-updated.mp4",
+      videoUrl: "https://example.com/abs-updated.mp4",
       features: [],
       order: 1,
       isActive: true,
@@ -111,7 +125,7 @@ describe("Convex image storage", () => {
     expect(await t.run((ctx) => ctx.storage.getUrl(firstImage))).toBeNull();
 
     const updated = await t.query(api.services.getBySlug, { slug: "abs-tamiri" });
-    expect(updated?.videoUrl).toBe("/uploads/services/abs-updated.mp4");
+    expect(updated?.videoUrl).toBe("https://example.com/abs-updated.mp4");
 
     await admin.mutation(api.services.deleteService, { id: serviceId });
     expect(await t.run((ctx) => ctx.storage.getUrl(secondImage))).toBeNull();

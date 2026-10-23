@@ -19,7 +19,7 @@ export default async function MarkalarPage() {
       title="Araç Markaları"
       badge="BEYİN DEPOSU UYUMLULUK"
       description="Tüm binek ve ticari araç markalarına uyumlu test edilmiş, garantili orijinal oto beyinleri ve elektronik modülleri."
-      heroImage="/images/brands-hero.jpg"
+      heroImage="/images/heroes/brands-hero.jpg"
       actionLabel="Parçaları bul"
       detailLabel="Marka sayfası"
       items={brands.map((brand) => ({

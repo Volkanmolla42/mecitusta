@@ -8,8 +8,8 @@ const transmissionCards = [
     brand: "OPEL",
     title: "BEYİN TAMİRİ",
     accent: "bg-amber-500",
-    image: "/images/opel-beyin-card-v2.webp",
-    mobileImage: "/images/opel-beyin-card-mobile-v2.webp",
+    image: "/images/cards/opel-beyin-card-v2.webp",
+    mobileImage: "/images/cards/opel-beyin-card-mobile-v2.webp",
     alt: "Opel beyin / ECU ünitesi",
     featured: true,
     features: [
@@ -23,8 +23,8 @@ const transmissionCards = [
     brand: "EASYTRONIC",
     title: "ŞANZIMAN ÜNİTESİ TAMİRİ",
     accent: "bg-amber-500",
-    image: "/images/easytronic-card.webp",
-    mobileImage: "/images/easytronic-card-mobile.webp",
+    image: "/images/cards/easytronic-card.webp",
+    mobileImage: "/images/cards/easytronic-card-mobile.webp",
     alt: "Easytronic şanzıman ünitesi",
     featured: false,
     features: [
@@ -38,8 +38,8 @@ const transmissionCards = [
     brand: "MAGNETI MARELLI",
     title: "ŞANZIMAN ÜNİTESİ TAMİRİ",
     accent: "bg-red-600",
-    image: "/images/marelli-card.webp",
-    mobileImage: "/images/marelli-card-mobile.webp",
+    image: "/images/cards/marelli-card.webp",
+    mobileImage: "/images/cards/marelli-card-mobile.webp",
     alt: "Magneti Marelli şanzıman ünitesi",
     featured: false,
     features: [

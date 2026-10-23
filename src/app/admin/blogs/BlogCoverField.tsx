@@ -2,12 +2,10 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { useMutation } from "convex/react";
-import { api } from "@convex/_generated/api";
 import type { Id } from "@convex/_generated/dataModel";
 import { Loader2, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { uploadImageToConvex } from "@/lib/image-upload";
+import { uploadAdminImage } from "@/lib/admin-uploads";
 import { useObjectUrlPreview } from "@/lib/use-object-url-preview";
 import {
   BLOG_HINT,
@@ -27,7 +25,6 @@ export default function BlogCoverField({
   onChange,
   onError,
 }: BlogCoverFieldProps) {
-  const generateUploadUrl = useMutation(api.storage.generateUploadUrl);
   const { create: createPreview, clear: clearPreview } = useObjectUrlPreview();
   const [uploading, setUploading] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -37,7 +34,7 @@ export default function BlogCoverField({
     setUploading(true);
     onError("");
     try {
-      const storageId = await uploadImageToConvex(file, generateUploadUrl);
+      const { storageId } = await uploadAdminImage(file);
       onChange(storageId, createPreview(file));
     } catch (error) {
       onError(

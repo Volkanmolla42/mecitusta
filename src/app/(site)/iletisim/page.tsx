@@ -72,7 +72,7 @@ export default async function IletisimPage() {
     "@type": "AutoPartsStore",
     name: SITE_NAME,
     url: `${SITE_URL}/iletisim`,
-    image: new URL("/images/logo-mark.webp", SITE_URL).toString(),
+    image: new URL("/images/logos/logo-mark.webp", SITE_URL).toString(),
     telephone: displayPhone,
     email: displayEmail,
     address: {
@@ -93,7 +93,7 @@ export default async function IletisimPage() {
       />
 
       <HeroBanner
-        src="/images/contact-hero.webp"
+        src="/images/heroes/contact-hero.webp"
         alt="Mecit Usta atölyesinde Opel araç"
         eyebrow="Hakkımızda"
         title="Güvenilir Tamir, Doğru Çözüm."

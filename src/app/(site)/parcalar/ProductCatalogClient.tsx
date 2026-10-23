@@ -248,7 +248,7 @@ export default function ProductCatalogClient() {
   return (
     <>
       <HeroBanner
-        src="/images/catalog-parts-hero.jpg"
+        src="/images/heroes/catalog-parts-hero.jpg"
         alt="Oto Elektronik Parça Kataloğu"
         eyebrow="Mecit Usta Parça Kataloğu"
         title={activeListingTitle}

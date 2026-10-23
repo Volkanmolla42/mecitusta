@@ -17,7 +17,7 @@ export default async function CategoriesPage() {
       title="Parça Kategorileri"
       badge="BEYİN DEPOSU KATALOG"
       description="ECU motor beyinleri, ABS pompaları, şanzıman modülleri ve tüm oto elektronik ünitelerini kategorilere göre inceleyin."
-      heroImage="/images/categories-hero.jpg"
+      heroImage="/images/heroes/categories-hero.jpg"
       actionLabel="Parçaları bul"
       detailLabel="Kategori sayfası"
       items={categories.map((category) => ({

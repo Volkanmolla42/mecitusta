@@ -75,7 +75,7 @@ export default function Footer() {
               onClick={handleLogoClick}
             >
               <Image
-                src="/images/logo-mark.webp"
+                src="/images/logos/logo-mark.webp"
                 alt=""
                 width={680}
                 height={680}
@@ -98,7 +98,7 @@ export default function Footer() {
 
             <div className="mt-5 border-t border-white/10 pt-4">
               <Image
-                src="/images/logo-berat-white.webp"
+                src="/images/logos/logo-berat-white.webp"
                 alt="Berat Elektronik"
                 width={223}
                 height={61}
@@ -234,7 +234,7 @@ export default function Footer() {
               className="group relative min-h-[160px] overflow-hidden rounded-xl"
             >
               <Image
-                src="/images/hero-rebrand.jpg"
+                src="/images/heroes/hero-rebrand.jpg"
                 alt="Berat Elektronik atölyesi"
                 fill
                 sizes="(min-width: 1024px) 20vw, (min-width: 640px) 40vw, 100vw"

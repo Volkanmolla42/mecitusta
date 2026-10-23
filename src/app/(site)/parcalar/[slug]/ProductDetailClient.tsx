@@ -1,0 +1,380 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ChevronRight,
+  Phone,
+  Check,
+  Copy,
+  Cpu,
+  Share2,
+  Package,
+  Car,
+  Wrench,
+} from "lucide-react";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import ProductCard from "@/components/ProductCard";
+import { useQuery } from "convex/react";
+import type { FunctionReturnType } from "convex/server";
+import { api } from "@convex/_generated/api";
+import { useContactSettings } from "@/hooks/useContactSettings";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
+import { absoluteUrl } from "@/lib/seo";
+import { Button } from "@/components/ui/button";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { Badge } from "@/components/ui/badge";
+import { ModernImageZoom } from "@/components/ModernImageZoom";
+import { ProductImage } from "@/components/ProductImage";
+import { slugify, LOCAL_BRAND_LOGOS } from "@/app/admin/admin-utils";
+import { trackAnalytics } from "@/lib/analytics";
+import {
+  getProductImageAlt,
+  getProductImageSource,
+  PRODUCT_IMAGE_PLACEHOLDER_ALT,
+} from "@/lib/product-images";
+
+interface PageProps {
+  slug: string;
+  initialProduct: NonNullable<FunctionReturnType<typeof api.products.getBySlug>>;
+}
+
+export default function ProductDetailClient({ slug, initialProduct }: PageProps) {
+
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [copiedOem, setCopiedOem] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
+
+  const queriedProduct = useQuery(api.products.getBySlug, { slug });
+  const product = queriedProduct === undefined ? initialProduct : queriedProduct;
+
+  const relatedProducts = useQuery(
+    api.products.list,
+    product?.categorySlug
+      ? { categorySlug: product.categorySlug }
+      : "skip"
+  );
+
+  const { phoneNumber: displayPhone } = useContactSettings();
+
+  const brands = useQuery(api.brands.list, {});
+  const brandSlug = product?.brand ? slugify(product.brand) : "";
+  const brandInfo = brands?.find(
+    (b) =>
+      b.name.toLowerCase() === product?.brand?.toLowerCase() ||
+      b.slug.toLowerCase() === brandSlug
+  );
+  const brandLogoUrl =
+    brandInfo?.logoUrl ||
+    LOCAL_BRAND_LOGOS[brandSlug] ||
+    (brandSlug ? `/images/brands/${brandSlug}.svg` : null);
+
+  const galleryImages = product?.images ?? [];
+  const productDescription = product?.description?.trim() ?? "";
+
+  const copyOemTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const copyLinkTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyOemTimerRef.current) clearTimeout(copyOemTimerRef.current);
+      if (copyLinkTimerRef.current) clearTimeout(copyLinkTimerRef.current);
+    };
+  }, []);
+
+  const handleCopyOem = () => {
+    if (!product?.oemNumber) return;
+    navigator.clipboard.writeText(product.oemNumber);
+    trackAnalytics("oem_copy");
+    setCopiedOem(true);
+    if (copyOemTimerRef.current) clearTimeout(copyOemTimerRef.current);
+    copyOemTimerRef.current = setTimeout(() => {
+      setCopiedOem(false);
+      copyOemTimerRef.current = null;
+    }, 2000);
+  };
+
+  const handleShareLink = () => {
+    if (typeof window !== "undefined") {
+      navigator.clipboard.writeText(window.location.href);
+      trackAnalytics("product_share");
+      setCopiedLink(true);
+      if (copyLinkTimerRef.current) clearTimeout(copyLinkTimerRef.current);
+      copyLinkTimerRef.current = setTimeout(() => {
+        setCopiedLink(false);
+        copyLinkTimerRef.current = null;
+      }, 2000);
+    }
+  };
+
+  if (product === null) {
+    return (
+      <div className="flex-1 flex items-center justify-center p-6 text-center py-24">
+        <div className="space-y-4 max-w-md bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <Cpu className="w-12 h-12 text-slate-400 mx-auto" />
+          <h2 className="text-xl font-bold text-slate-900">Parça bulunamadı</h2>
+          <Link href="/parcalar">
+            <Button variant="default" size="default" className="w-full">
+              Tüm parçalara dön
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const filteredRelated = (relatedProducts || [])
+    .filter((p) => p._id !== product._id)
+    .slice(0, 3);
+
+  return (
+    <div className="w-full">
+      <section className="bg-white border-b border-slate-200 py-6 sm:py-10">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+            <div className="lg:col-span-6 min-w-0 space-y-3">
+              <div className="relative w-full rounded-2xl border border-slate-200 bg-slate-50 aspect-4/3 flex items-center justify-center">
+                {galleryImages.length > 0 ? (
+                  <ModernImageZoom
+                    src={galleryImages[activeImageIndex] || galleryImages[0]}
+                    alt={getProductImageAlt(product.title, galleryImages)}
+                    preload={true}
+                    images={galleryImages}
+                    currentIndex={activeImageIndex}
+                    onIndexChange={setActiveImageIndex}
+                    zoomMode="side"
+                    className="w-full h-full border-0 bg-transparent rounded-2xl"
+                  />
+                ) : (
+                  <ProductImage
+                    src={getProductImageSource(galleryImages)}
+                    alt={PRODUCT_IMAGE_PLACEHOLDER_ALT}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-contain p-2"
+                  />
+                )}
+              </div>
+
+              {galleryImages.length > 1 && (
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 max-w-full scrollbar-none">
+                  {galleryImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => { setActiveImageIndex(idx); trackAnalytics("image_view", { number: idx + 1 }); }}
+                      aria-label={`Parça görseli ${idx + 1}`}
+                      className={`relative w-16 h-14 sm:w-20 sm:h-16 rounded-xl overflow-hidden border-2 bg-slate-50 transition-all cursor-pointer shrink-0 ${activeImageIndex === idx ? "border-amber-500 ring-2 ring-amber-200/60" : "border-slate-200 opacity-70 hover:opacity-100"}`}
+                    >
+                      <ProductImage
+                        src={img}
+                        alt=""
+                        fill
+                        unoptimized
+                        sizes="80px"
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="lg:col-span-6 min-w-0 space-y-4">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h1 className="font-mono text-2xl sm:text-3xl font-bold text-slate-950 tracking-tight break-all">
+                    {product.oemNumber}
+                  </h1>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <button
+                      type="button"
+                      onClick={handleCopyOem}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-all cursor-pointer"
+                      title="OEM kodunu kopyala"
+                      aria-label="OEM kodunu kopyala"
+                    >
+                      {copiedOem ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-600" />
+                          <span className="text-emerald-700 font-bold">Kopyalandı</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5 text-slate-500" />
+                          <span>Kopyala</span>
+                        </>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleShareLink}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-all cursor-pointer"
+                      title="Bağlantıyı kopyala"
+                      aria-label="Parça bağlantısını kopyala"
+                    >
+                      {copiedLink ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-600" />
+                          <span className="text-emerald-700 font-bold">Kopyalandı</span>
+                        </>
+                      ) : (
+                        <>
+                          <Share2 className="w-3.5 h-3.5 text-slate-500" />
+                          <span>Paylaş</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 mt-2 break-words">
+                  {product.title}
+                </h2>
+
+                <div className="flex items-center gap-2 pt-3">
+                  <Badge variant={product.condition === "Sıfır" ? "success" : "secondary"} className="text-xs font-bold">
+                    {product.condition}
+                  </Badge>
+                  <Badge variant={product.inStock ? "info" : "warning"} className="text-xs font-bold">
+                    {product.inStock ? "Stokta" : "Stokta yok"}
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="border border-slate-200 rounded-xl overflow-hidden text-xs divide-y divide-slate-100 bg-white">
+                <div className="grid grid-cols-2 p-3 items-center">
+                  <span className="text-slate-500 font-medium flex items-center gap-1.5">
+                    <Car className="w-3.5 h-3.5 text-slate-400 shrink-0" /> Araç Markası
+                  </span>
+                  <Link
+                    href={`/parcalar?marka=${encodeURIComponent(product.brand)}`}
+                    className="inline-flex items-center gap-2 group w-fit font-medium text-slate-900 hover:text-amber-600"
+                    title={`${product.brand} parçalarını gör`}
+                  >
+                    {brandLogoUrl && (
+                      <Image
+                        src={brandLogoUrl}
+                        alt=""
+                        width={20}
+                        height={20}
+                        className="h-5 w-5 object-contain shrink-0"
+                      />
+                    )}
+                    {product.brand}
+                  </Link>
+                </div>
+                {product.model && (
+                  <div className="grid grid-cols-2 p-3 bg-slate-50/60">
+                    <span className="text-slate-500 font-medium flex items-center gap-1.5">
+                      <Wrench className="w-3.5 h-3.5 text-slate-400 shrink-0" /> Uyumlu Model
+                    </span>
+                    <span className="font-bold text-slate-900">{product.model}</span>
+                  </div>
+                )}
+                <div className="grid grid-cols-2 p-3">
+                  <span className="text-slate-500 font-medium flex items-center gap-1.5">
+                    <Package className="w-3.5 h-3.5 text-slate-400 shrink-0" /> Modül Kategorisi
+                  </span>
+                  <span className="font-semibold text-slate-900">{product.categoryName}</span>
+                </div>
+              </div>
+
+              {product.tags && product.tags.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {product.tags.map((tag, idx) => (
+                    <Link
+                      key={idx}
+                      href={`/parcalar?q=${encodeURIComponent(tag)}`}
+                      className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-amber-50 hover:text-amber-700 border border-slate-200 text-slate-600 font-semibold text-[11px] transition-colors cursor-pointer"
+                    >
+                      #{tag}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <Button
+                  asChild
+                  variant="whatsapp"
+                  size="lg"
+                  className="sm:col-span-2 w-full text-xs font-bold tracking-wider py-6 rounded-xl shadow-md"
+                >
+                  <a
+                    href={getWhatsAppUrl(
+                      {
+                        product: {
+                          title: product.title,
+                          oemNumber: product.oemNumber,
+                          action: "price_and_stock",
+                          productUrl: absoluteUrl(`/parcalar/${slug}`),
+                        },
+                      },
+                      displayPhone
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Fiyat ve stok sor: ${product.oemNumber} için WhatsApp`}
+                  >
+                    <WhatsAppIcon className="w-5 h-5 fill-white text-white mr-1.5 shrink-0" />
+                    <span>Fiyat ve stok sor</span>
+                  </a>
+                </Button>
+
+                <Button
+                  asChild
+                  variant="default"
+                  size="lg"
+                  className="w-full font-medium text-xs py-6 rounded-xl shadow-sm"
+                >
+                  <a
+                    href={`tel:${displayPhone.replace(/\s+/g, "")}`}
+                    aria-label={`Telefonla ara: ${displayPhone}`}
+                  >
+                    <Phone className="w-4 h-4 mr-1.5 shrink-0" />
+                    <span>Ara</span>
+                  </a>
+                </Button>
+              </div>
+
+            </div>
+          </div>
+
+          {productDescription && (
+            <section className="mt-8 pt-8 border-t border-slate-200 text-sm text-slate-700 leading-relaxed max-w-4xl">
+              <MarkdownRenderer content={productDescription} />
+            </section>
+          )}
+        </div>
+      </section>
+
+      {filteredRelated && filteredRelated.length > 0 && (
+        <section className="py-8 sm:py-12 bg-slate-50">
+          <div className="container space-y-5">
+            <div className="flex items-center justify-between">
+              <h3 className="font-bold text-lg text-slate-900 tracking-tight">
+                {product.categoryName} kategorisindeki parçalar
+              </h3>
+              <Link
+                href={product.category ? `/kategoriler/${product.category.slug}` : "/parcalar"}
+                className="text-xs font-bold text-amber-600 hover:underline flex items-center gap-1"
+              >
+                <span>Tümünü gör</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredRelated.map((p) => (
+                <ProductCard key={p._id} product={p} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}

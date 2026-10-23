@@ -37,7 +37,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { slugify } from "@/app/admin/admin-utils";
-import { uploadAdminImages } from "@/lib/admin-uploads";
+import { uploadAdminImage } from "@/lib/admin-uploads";
 import { scanProductImage } from "./product-assistant";
 import { triggerRevalidate } from "@/lib/revalidate";
 import { useMobileDialogViewport } from "./use-mobile-dialog-viewport";
@@ -301,8 +301,10 @@ function ProductFormContent({
     pendingTask.current = "upload";
     setUploadingImage(true);
     try {
-      const uploaded = await uploadAdminImages(files);
-      setPreviewImages((prev) => [...prev, ...uploaded.map((image) => image.url)]);
+      for (const file of files) {
+        const { url } = await uploadAdminImage(file);
+        setPreviewImages((prev) => [...prev, url]);
+      }
     } catch (err) {
       console.error("Görsel yüklenemedi:", err);
       alert(

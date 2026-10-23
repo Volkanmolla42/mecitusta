@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { getPublicBrands } from "@/lib/seo-data";
-import { createPageMetadata, SITE_NAME } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo";
 import CatalogDirectoryPage from "@/components/CatalogDirectoryPage";
 
 
 export const metadata: Metadata = createPageMetadata({
-  title: `Araç Markaları | ${SITE_NAME}`,
+  title: "Opel ve Uyumlu Araç Markaları",
   description:
-    "Tüm araç markalarına uyumlu ECU beyinleri, ABS ve elektronik kontrol ünitelerini listeleyin.",
+    "Opel ve uyumlu markalar için ECU, BCM ve elektronik kontrol ünitelerini inceleyin.",
   path: "/markalar",
 });
 
@@ -17,8 +17,8 @@ export default async function MarkalarPage() {
   return (
     <CatalogDirectoryPage
       title="Araç Markaları"
-      badge="BEYİN DEPOSU UYUMLULUK"
-      description="Tüm binek ve ticari araç markalarına uyumlu test edilmiş, garantili orijinal oto beyinleri ve elektronik modülleri."
+      badge="OPEL BEYİN UYUMLULUĞU"
+      description="Opel ve uyumlu araç markaları için test edilmiş ECU ve elektronik modüller."
       heroImage="/images/heroes/brands-hero.jpg"
       actionLabel="Parçaları bul"
       detailLabel="Marka sayfası"

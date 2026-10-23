@@ -46,7 +46,7 @@ export default function BlogArticle({ blog, relatedBlogs }: BlogArticleProps) {
           <span className="text-slate-400">•</span>
           <span>{calculateReadTime(content).toLocaleUpperCase("tr-TR")} OKUMA</span>
           <span className="text-slate-400">•</span>
-          <span>YAZAR: BEYİN DEPOSU TEKNİK EKİBİ</span>
+          <span>YAZAR: MECİT USTA TEKNİK EKİBİ</span>
           {showUpdated && (
             <>
               <span className="text-slate-400">•</span>
@@ -85,8 +85,8 @@ export default function BlogArticle({ blog, relatedBlogs }: BlogArticleProps) {
               Mecit Usta Teknik Ekibi
             </h4>
             <p className="text-xs text-slate-500 mt-0.5 line-clamp-2 leading-relaxed">
-              Oto beyin (ECU), ABS beyni, mekatronik ve otomotiv elektronik
-              kontrol sistemleri teşhis, yazılım ve laboratuvar onarım servisi.
+              Opel beyin (ECU), ABS, mekatronik ve otomotiv elektronik kontrol
+              sistemleri teşhis, yazılım ve laboratuvar onarım servisi.
             </p>
           </div>
         </div>

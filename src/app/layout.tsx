@@ -59,7 +59,7 @@ export const metadata: Metadata = {
         url: SEO_IMAGE,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} oto elektronik parça kataloğu`,
+        alt: `${SITE_NAME} Opel beyin ve şanzıman servisi`,
       },
     ],
   },

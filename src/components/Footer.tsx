@@ -15,7 +15,7 @@ import ProblemCta from "@/components/ProblemCta";
 const quickLinks = [
   { href: "/", label: "Ana Sayfa" },
   { href: "/#videolar", label: "Videolar" },
-  { href: "/parcalar", label: "Ürünler" },
+  { href: "/parcalar", label: "Parçalar" },
   { href: "/tamirveservis", label: "Tamir & Servis" },
   { href: "/iletisim", label: "İletişim" },
 ];

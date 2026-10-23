@@ -23,14 +23,17 @@ export default function OpelHero() {
 
       <div className="container relative z-10 flex min-h-[560px] items-center py-16 sm:min-h-[620px] sm:py-20 lg:min-h-[680px]">
         <div className="max-w-2xl">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-amber-500 sm:text-sm">
+            Mecit Usta · Opel Beyin Uzmanı
+          </p>
           <h1 className="text-3xl font-extrabold leading-[1.03] tracking-tight text-white sm:text-5xl lg:text-6xl">
             <span className="block">OPEL BEYİN VE</span>
             <span className="block text-amber-500">ŞANZIMAN TAMİRİ</span>
           </h1>
 
           <p className="mt-5 max-w-xl text-sm leading-6 text-slate-300 sm:text-base sm:leading-7">
-            Opel beyin, ECU ve şanzıman ünitelerinde arıza tespiti, tamir,
-            kodlama ve kalibrasyon yapıyoruz.
+            Opel araçlarınızın beyin, ECU ve şanzıman ünitelerinde arıza tespiti,
+            tamir, kodlama ve kalibrasyon yapıyoruz.
           </p>
 
           <div className="mt-8">

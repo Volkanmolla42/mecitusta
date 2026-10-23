@@ -13,11 +13,11 @@ export default function SupportCta() {
     <div className="my-12 p-6 sm:p-8 rounded-3xl bg-dark-bg text-white border border-dark-border shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-6">
       <div className="max-w-md">
         <span className="inline-block text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">
-          İletişim ve Destek
+          Mecit Usta Desteği
         </span>
         <h4 className="text-lg sm:text-xl font-bold text-white mb-2">Test ve Onarım Desteği</h4>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Aracınızdaki bu sorunu çözmek için teknisyenlerimizle görüşebilir, test ve tamir desteği alabilirsiniz.
+          Opel aracınızdaki elektronik sorunu çözmek için teknisyenlerimizle görüşebilir, test ve tamir desteği alabilirsiniz.
         </p>
       </div>
 

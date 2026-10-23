@@ -36,7 +36,7 @@ function getCategoryDescription(category: {
 }) {
   const description = plainText(category.metaDescription?.trim() || category.description || "");
   return metadataDescription(
-    description || `${category.name} kategorisindeki oto elektronik parçalarını inceleyin.`,
+    description || `${category.name} kategorisindeki Opel uyumlu elektronik parçaları inceleyin.`,
   );
 }
 

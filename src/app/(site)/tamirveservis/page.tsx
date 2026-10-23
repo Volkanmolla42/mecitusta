@@ -20,55 +20,55 @@ import { createPageMetadata, serializeJsonLd, SITE_NAME, SITE_URL } from "@/lib/
 import { listPublicServices } from "@/lib/services-data";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Tamir & Servis | Oto Beyin, Mekatronik ve Elektronik Onarımı",
+  title: "Tamir & Servis | Opel Beyin ve Şanzıman",
   description:
-    "ABS tamiri, VW DSG mekatronik onarımı, motor ve şanzıman beyin tamiri, ECU kodlama ve arıza tespiti. Uzman kadro ve garantili servis.",
+    "Opel beyin, ECU, Easytronic ve Magneti Marelli şanzıman ünitelerinde arıza tespiti, tamir, kodlama ve kalibrasyon. Garantili onarım ve kontrollü süreç.",
   path: "/tamirveservis",
 });
 
 const topFeatures = [
   {
     icon: UserCheck,
-    title: "Uzman Kadro",
-    description: "Deneyimli teknisyenler",
+    title: "Opel Uzmanlığı",
+    description: "Beyin ve şanzıman sistemleri",
   },
   {
     icon: Cpu,
-    title: "Orijinal Ekipman",
+    title: "Gelişmiş Ekipman",
     description: "Profesyonel test cihazları",
   },
   {
     icon: Clock,
-    title: "Hızlı Çözüm",
-    description: "Zamanında teslim",
+    title: "Kontrollü Süreç",
+    description: "Tespit, onarım ve test",
   },
   {
     icon: ShieldCheck,
-    title: "Güvenilir Hizmet",
-    description: "Garantili onarım",
+    title: "Garantili Onarım",
+    description: "Test ve doğrulama",
   },
 ];
 
 const bottomFeatures = [
   {
     icon: Clock,
-    title: "Hızlı Servis",
-    description: "Aynı gün tespit ve teslimat",
+    title: "Laboratuvar İşçiliği",
+    description: "Test standartlarında onarım",
   },
   {
     icon: Wrench,
-    title: "Kaliteli İşçilik",
-    description: "Laboratuvar test standartları",
+    title: "Şeffaf Bilgilendirme",
+    description: "Onarım öncesi net süreç",
   },
   {
     icon: CircleDollarSign,
-    title: "Uygun Fiyat",
-    description: "Şeffaf onarım & parça maliyeti",
+    title: "Kontrollü Maliyet",
+    description: "Gereksiz parça değişimi yok",
   },
   {
     icon: HeartHandshake,
-    title: "Müşteri Memnuniyeti",
-    description: "Garantili teknik destek",
+    title: "Teknik Destek",
+    description: "Satış sonrası destek",
   },
 ];
 
@@ -88,7 +88,7 @@ export default async function TamirVeServisPage() {
       addressCountry: "TR",
     },
     description:
-      "Profesyonel oto elektronik, ECU motor beyin tamiri, DSG mekatronik onarımı ve arıza tespiti servisi.",
+      "Opel beyin, ECU, Easytronic ve Magneti Marelli şanzıman ünitelerinde arıza tespiti, tamir, kodlama ve kalibrasyon servisi.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Tamir ve Elektronik Servis Hizmetleri",
@@ -116,9 +116,9 @@ export default async function TamirVeServisPage() {
       <HeroBanner
         src="/images/services/tamir-hero.jpg"
         alt="Mecit Usta Tamir ve Servis Atölyesi"
-        eyebrow="Uzman Kadro • Modern Teknoloji • Güvenilir Çözümler"
-        title="Tamir & Servis"
-        description="Aracınızın tüm mekanik ve elektronik ihtiyaçları için profesyonel tamir ve servis hizmetleri sunuyoruz."
+        eyebrow="OPEL BEYİN • EASYTRONIC • MAGNETI MARELLI"
+        title="Opel Beyin ve Şanzıman Servisi"
+        description="Opel araçlarınızın beyin, ECU ve şanzıman ünitelerinde arıza tespiti, tamir, kodlama ve kalibrasyon yapıyoruz."
         actions={
           <>
             <Button asChild variant="default" size="lg">
@@ -144,7 +144,7 @@ export default async function TamirVeServisPage() {
             Hizmetlerimiz
           </h2>
           <p className="mt-2 text-sm sm:text-base text-slate-600">
-            Aracınızın tüm sistemleri için kapsamlı tamir ve servis çözümleri.
+            Opel beyin, ECU ve şanzıman sistemleri için kapsamlı tamir ve servis çözümleri.
           </p>
         </div>
 

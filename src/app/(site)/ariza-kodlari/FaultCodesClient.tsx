@@ -82,7 +82,7 @@ export default function FaultCodesClient({ codes }: { codes: FaultCodeItem[] }) 
   const obdBadges = [
     {
       icon: CarFront,
-      title: "Tüm Marka ve Modeller",
+      title: "Opel ve Uyumlu Modeller",
       description: "Kapsamlı veri tabanı",
     },
     {
@@ -129,10 +129,10 @@ export default function FaultCodesClient({ codes }: { codes: FaultCodeItem[] }) 
     <div className="min-h-screen bg-slate-50">
       <HeroBanner
         src="/images/obd/obd-scanner-hero.jpg"
-        alt="OBD Arıza Kodları ve Teşhis"
-        eyebrow="OBD Arıza Teşhisi"
+        alt="Opel OBD arıza kodları ve teşhis"
+        eyebrow="Mecit Usta OBD Arıza Teşhisi"
         title="OBD Arıza Kodları"
-        description="Aracınızın arıza kodlarını öğrenin, anlamlarını keşfedin, doğru çözüme ulaşın."
+        description="Opel aracınızın arıza kodlarını öğrenin, anlamlarını keşfedin, doğru çözüme ulaşın."
       />
 
       <TrustBadgeStrip items={obdBadges} />

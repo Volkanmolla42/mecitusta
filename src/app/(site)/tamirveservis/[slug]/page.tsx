@@ -168,7 +168,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       <HeroBanner
         src={service.image}
         alt={service.title}
-        eyebrow="Tamir & Servis Hizmetleri"
+        eyebrow="Mecit Usta Tamir & Servis"
         title={service.title}
         description={service.shortDesc}
         actions={
@@ -285,7 +285,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   Randevu ve Bilgi Alın
                 </h3>
                 <p className="mt-1.5 text-xs sm:text-sm text-slate-600">
-                  {service.title} için uzman teknisyenlerimizden hızlı fiyat ve randevu desteği alın.
+                  {service.title} için Opel aracınıza özel onarım, test ve randevu desteği alın.
                 </p>
 
                 <div className="mt-6 space-y-3">
@@ -333,7 +333,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   </div>
                   <div className="flex items-center gap-3 text-xs text-slate-700">
                     <Clock className="h-4 w-4 text-amber-500 shrink-0" />
-                    <span>Hızlı arıza tespiti ve teslimat</span>
+                    <span>Arıza tespiti ve kontrollü teslim</span>
                   </div>
                 </div>
               </div>
@@ -361,7 +361,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   Diğer Tamir & Servis Hizmetlerimiz
                 </h2>
                 <p className="mt-1 text-sm text-slate-600">
-                  Elektronik ve mekanik sistemler için sunduğumuz diğer profesyonel çözümler.
+                  Opel beyin, ECU ve şanzıman sistemleri için sunduğumuz diğer çözümler.
                 </p>
               </div>
               <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">

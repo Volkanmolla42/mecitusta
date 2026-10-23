@@ -97,7 +97,7 @@ export default async function IletisimPage() {
         alt="Mecit Usta atölyesinde Opel araç"
         eyebrow="Hakkımızda"
         title="Güvenilir Tamir, Doğru Çözüm."
-        description="Opel Beyin Uzmanı olarak otomotiv elektronik beyin ve şanzıman sistemlerinde uzmanlaşmış ekibimizle; arıza tespiti, tamir, kodlama ve test süreçlerini tek çatı altında yürütüyoruz. Gelişmiş ekipmanlarımızla doğru ve kalıcı çözümler üretiyoruz."
+        description="Mecit Usta olarak Opel beyin, ECU ve şanzıman sistemlerinde uzmanlaşmış ekibimizle; arıza tespiti, tamir, kodlama ve test süreçlerini tek çatı altında yürütüyoruz. Gelişmiş ekipmanlarımızla doğru ve kalıcı çözümler üretiyoruz."
       />
 
       <section aria-label="Bizi tercih etme nedenleri" className="bg-white py-10 sm:py-12">

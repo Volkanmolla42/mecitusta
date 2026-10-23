@@ -5,7 +5,7 @@ import CatalogDirectoryPage from "@/components/CatalogDirectoryPage";
 
 export const metadata = createPageMetadata({
   title: "Kategoriler",
-  description: "Oto elektronik parçalarını kategorilerine göre inceleyin.",
+  description: "Opel beyin ve elektronik parçalarını kategorilere göre inceleyin.",
   path: "/kategoriler",
 });
 
@@ -15,8 +15,8 @@ export default async function CategoriesPage() {
   return (
     <CatalogDirectoryPage
       title="Parça Kategorileri"
-      badge="BEYİN DEPOSU KATALOG"
-      description="ECU motor beyinleri, ABS pompaları, şanzıman modülleri ve tüm oto elektronik ünitelerini kategorilere göre inceleyin."
+      badge="OPEL BEYİN KATALOĞU"
+      description="Opel motor beyni, ABS, BCM, şanzıman ve elektronik modülleri kategorilere göre inceleyin."
       heroImage="/images/heroes/categories-hero.jpg"
       actionLabel="Parçaları bul"
       detailLabel="Kategori sayfası"

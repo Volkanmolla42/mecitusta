@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { createPageMetadata, SITE_NAME } from "@/lib/seo";
+import { createPageMetadata } from "@/lib/seo";
 import ProductCatalogClient from "@/app/(site)/parcalar/ProductCatalogClient";
 import { CatalogSkeleton } from "@/components/RouteSkeletons";
 
@@ -21,24 +21,24 @@ export async function generateMetadata({ searchParams }: ParcalarPageProps): Pro
   const { kategori, marka, model, q, durum, stok } = params;
   const hasCatalogQuery = Boolean(kategori || marka || model || q || durum || stok);
 
-  let title = `Oto Elektronik Parça Kataloğu | ${SITE_NAME}`;
-  let description = "ECU motor beyinleri, ABS, airbag ve oto elektronik parçaları kataloğu.";
+  let title = "Opel Beyin ve Elektronik Parça Kataloğu";
+  let description = "Opel araçları için ECU, ABS, airbag, BCM ve elektronik parça kataloğu.";
 
   if (q) {
-    title = `"${q}" Parça Arama Sonuçları | ${SITE_NAME}`;
-    description = `"${q}" kodlu veya isimli parçaya uygun oto elektronik parça sonuçları ve stok durumu.`;
+    title = `"${q}" Parça Arama Sonuçları`;
+    description = `"${q}" kodlu veya isimli parçaya uygun Opel uyumlu parça sonuçları ve stok durumu.`;
   } else if (kategori && marka) {
-    title = `${marka} ${kategori} Parçaları | ${SITE_NAME}`;
+    title = `${marka} ${kategori} Parçaları`;
     description = `${marka} marka araçlar için ${kategori} kontrol üniteleri ve elektronik modülleri.`;
   } else if (kategori) {
-    title = `${kategori} Modülleri | ${SITE_NAME}`;
-    description = `${kategori} kategorisindeki tüm oto elektronik kontrol üniteleri ve yedek parçalar.`;
+    title = `${kategori} Modülleri`;
+    description = `${kategori} kategorisindeki Opel uyumlu elektronik kontrol üniteleri ve yedek parçalar.`;
   } else if (marka) {
-    title = `${marka} Oto Elektronik Parçaları | ${SITE_NAME}`;
+    title = `${marka} Oto Elektronik Parçaları`;
     description = `${marka} uyumlu oto beyinleri, modülleri ve elektronik parçaları.`;
   } else if (model) {
-    title = `${model} Uyumlu Parçalar | ${SITE_NAME}`;
-    description = `${model} araç modeliyle eşleşen oto elektronik parçaları.`;
+    title = `${model} Uyumlu Parçalar`;
+    description = `${model} araç modeliyle eşleşen Opel uyumlu elektronik parçaları.`;
   }
 
   const metadata = createPageMetadata({

@@ -4,13 +4,13 @@ import { api } from "@convex/_generated/api";
 import FaultCodesClient from "./FaultCodesClient";
 
 export const metadata: Metadata = {
-  title: "OBD Arıza Kodları ve Anlamları | Mecit Usta",
+  title: "Opel OBD Arıza Kodları ve Anlamları",
   description:
-    "Aracınızın motor, şanzıman, ABS ve airbag OBD-II arıza kodlarını öğrenin. P, C, B, U kodlarının anlamları, olası nedenleri ve profesyonel çözüm yolları.",
+    "Opel ve uyumlu araçların motor, şanzıman, ABS ve airbag OBD-II arıza kodlarını öğrenin. P, C, B, U kodlarının anlamları, olası nedenleri ve çözüm yolları.",
   openGraph: {
-    title: "OBD Arıza Kodları ve Anlamları | Mecit Usta",
+    title: "Opel OBD Arıza Kodları ve Anlamları | Mecit Usta",
     description:
-      "Aracınızın OBD-II arıza kodlarını öğrenin, anlamlarını keşfedin, doğru oto elektronik çözümlerine ulaşın.",
+      "Opel ve uyumlu araçların OBD-II arıza kodlarını öğrenin, anlamlarını keşfedin, doğru çözüme ulaşın.",
     images: ["/images/obd/obd-scanner-hero.jpg"],
   },
 };

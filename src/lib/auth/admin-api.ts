@@ -23,8 +23,8 @@ export async function requireAdminApiRequest(request: Request) {
   }
   if (sourceOrigin) {
     const isProdDomain =
-      sourceOrigin === "https://mecitusta.com" ||
-      sourceOrigin === "https://www.mecitusta.com" ||
+      sourceOrigin === "https://mecitusta.vercel.app" ||
+      sourceOrigin === "https://www.mecitusta.vercel.app" ||
       (process.env.SITE_URL ? sourceOrigin === new URL(process.env.SITE_URL).origin : false);
 
     const isMatchingOrigin =

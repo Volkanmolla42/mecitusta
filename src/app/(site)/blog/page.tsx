@@ -5,9 +5,9 @@ import { absoluteUrl, SEO_IMAGE, SITE_NAME } from "@/lib/seo";
 import { listBlogCards, listBlogCategories } from "@/lib/blog-data";
 import BlogListClient from "./BlogListClient";
 
-const BASE_TITLE = "Kronik Arızalar ve Çözümleri | Mecit Usta Blog";
+const BASE_TITLE = "Opel Arızaları ve Çözümleri | Mecit Usta Blog";
 const BASE_DESCRIPTION =
-  "Oto beyin, mekatronik, şanzıman ve elektronik sistemlerde sık karşılaşılan arızalar, teşhis yöntemleri ve garantili laboratuvar çözümleri.";
+  "Opel beyin, Easytronic, Magneti Marelli ve elektronik sistemlerde sık karşılaşılan arızalar, teşhis yöntemleri ve çözümler.";
 
 export const metadata: Metadata = {
   title: { absolute: BASE_TITLE },
@@ -72,10 +72,10 @@ export default async function BlogPage() {
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <HeroBanner
         src="/images/heroes/chronic-faults-hero.jpg"
-        alt="Oto Elektronik Uzmanlığı"
+        alt="Opel beyin ve şanzıman arızaları"
         eyebrow="Mecit Usta Blog"
-        title="Kronik Arızalar ve Çözümleri"
-        description="Sık karşılaşılan oto elektronik ve mekanik arızaları, belirtilerini ve tamir çözümlerini sizin için derledik."
+        title="Opel Arızaları ve Çözümleri"
+        description="Opel araçlarınızda sık karşılaşılan beyin, şanzıman ve elektronik arızaları, belirtilerini ve çözümlerini derledik."
       />
 
       <Suspense fallback={<BlogListFallback />}>

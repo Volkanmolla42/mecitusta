@@ -249,10 +249,10 @@ export default function ProductCatalogClient() {
     <>
       <HeroBanner
         src="/images/heroes/catalog-parts-hero.jpg"
-        alt="Oto Elektronik Parça Kataloğu"
+        alt="Opel beyin ve elektronik parça kataloğu"
         eyebrow="Mecit Usta Parça Kataloğu"
         title={activeListingTitle}
-        description={`${hasActiveFilters ? "Seçtiğiniz filtrelere uygun orijinal oto elektronik parçaları listeleniyor." : "Tüm araç modelleri için test edilmiş, garantili orijinal oto beyinleri, kontrol üniteleri ve modülleri."}${partCountLabel ? ` (${partCountLabel})` : ""}`}
+        description={`${hasActiveFilters ? "Seçtiğiniz filtrelere uygun Opel uyumlu parçalar listeleniyor." : "Opel ve uyumlu araçlar için test edilmiş beyinler, kontrol üniteleri ve modüller."}${partCountLabel ? ` (${partCountLabel})` : ""}`}
       />
 
       <div className="container py-5 sm:py-7">

@@ -35,10 +35,10 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-dark-bg/95 text-white backdrop-blur">
       <div className="container">
         <div className="flex h-16 items-center justify-between sm:h-[72px]">
-          <Link href="/" aria-label="Berat Elektronik ana sayfa" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none">
+          <Link href="/" aria-label="Opel Beyin Uzmanı ana sayfa" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none">
             <Image
               src="/images/logos/logo_dark.webp"
-              alt="Berat Elektronik ana sayfa"
+              alt="Opel Beyin Uzmanı ana sayfa"
               width={682}
               height={120}
               preload

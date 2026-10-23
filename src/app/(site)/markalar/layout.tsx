@@ -1,9 +1,9 @@
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Araç Markaları",
+  title: "Opel ve Uyumlu Araç Markaları",
   description:
-    "BMW, Mercedes-Benz, Renault, Volkswagen ve diğer araç markalarına uygun oto elektronik parçalarını inceleyin.",
+    "Opel ve uyumlu markalar için oto elektronik parça ve kontrol ünitelerini inceleyin.",
   path: "/markalar",
 });
 

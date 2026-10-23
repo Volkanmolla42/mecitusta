@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const SITE_NAME = "Mecit Usta";
-export const SITE_TITLE = "Mecit Usta | Oto Elektronik Parça Merkezi";
+export const SITE_TITLE = "Mecit Usta | Opel Beyin Uzmanı";
 export const SITE_URL = new URL(
-  process.env.SITE_URL?.trim() || "https://mecitusta.com",
+  process.env.SITE_URL?.trim() || "https://mecitusta.vercel.app",
 ).origin;
 export const SITE_DESCRIPTION =
-  "ECU, ABS, airbag ve diğer oto elektronik parçaları. Parça uyumluluğu, stok ve sipariş bilgisi için Mecit Usta ile iletişime geçin.";
+  "Opel beyin, ECU, Easytronic ve Magneti Marelli şanzıman ünitelerinde arıza tespiti, tamir, kodlama ve kalibrasyon. Mecit Usta güvencesiyle.";
 export const SEO_IMAGE = "/images/seo/seo-cover.webp";
 
 export const ORGANIZATION_JSON_LD = {
@@ -56,7 +56,7 @@ export function createPageMetadata({
     url: SEO_IMAGE,
     width: 1200,
     height: 630,
-    alt: `${SITE_NAME} oto elektronik parça kataloğu`,
+    alt: `${SITE_NAME} Opel beyin ve şanzıman servisi`,
   };
 
   return {

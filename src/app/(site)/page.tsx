@@ -54,28 +54,28 @@ const WEBSITE_JSON_LD = {
 const homeBenefits = [
   {
     icon: ShieldCheck,
-    title: "Uzman Kadro",
-    description: "Alanında uzman ekibimizle profesyonel onarım.",
+    title: "Opel Uzmanlığı",
+    description: "Beyin ve şanzıman sistemlerinde uzman kadro.",
   },
   {
     icon: Cog,
-    title: "Orijinal Ekipman",
-    description: "En son teknoloji cihazlarla yüksek hassasiyet.",
+    title: "Gelişmiş Test",
+    description: "Güncel cihazlarla hassas arıza tespiti.",
   },
   {
     icon: RefreshCw,
-    title: "Hızlı Tamir",
-    description: "Zamanında teslim, kesintisiz sürüş keyfi.",
+    title: "Kontrollü Süreç",
+    description: "Onarım, test ve doğrulama birlikte.",
   },
   {
     icon: BadgeCheck,
-    title: "Güvenilir Hizmet",
-    description: "Garantili tamir, kalıcı çözümler.",
+    title: "Garantili Onarım",
+    description: "Kalıcı çözüm, şeffaf bilgilendirme.",
   },
   {
     icon: Car,
-    title: "Tüm Opel Modelleri",
-    description: "Astra, Corsa, Insignia, Zafira ve daha fazlası...",
+    title: "Opel Modelleri",
+    description: "Astra, Corsa, Insignia, Zafira ve daha fazlası.",
   },
 ];
 
@@ -118,7 +118,7 @@ async function ServicesSection() {
             Hizmetlerimiz
           </h2>
           <p className="mt-1 text-sm text-slate-500">
-            Aracınızın elektronik ve mekanik sistemleri için profesyonel tamir ve servis hizmetleri.
+            Opel araçlarınızın elektronik ve şanzıman sistemleri için profesyonel tamir ve servis hizmetleri.
           </p>
         </div>
 
@@ -170,10 +170,10 @@ async function CategoriesSection() {
       <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Parça Kategorileri
+            Beyin ve Elektronik Parçalar
           </h2>
           <p className="mt-1 text-sm text-slate-500">
-            Aracınızın tüm sistemleri için kapsamlı parça çözümleri.
+            Opel araçlarınız için motor beyni, ABS, BCM, şanzıman ve diğer elektronik modüller.
           </p>
         </div>
       </div>
@@ -211,7 +211,7 @@ async function CategoriesSection() {
       <div className="mt-8 flex justify-center">
         <Button asChild variant="outline" size="lg" className="rounded-full">
           <Link href="/parcalar" className="gap-2">
-            Tüm Kategorileri İncele
+            Tüm Parçaları İncele
             <ArrowRight className="h-4 w-4 text-amber-500" aria-hidden="true" />
           </Link>
         </Button>
@@ -245,10 +245,10 @@ async function BrandsSection() {
         <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
-              Araç Markaları
+              Opel ve Uyumlu Markalar
             </h2>
             <p className="mt-1 text-sm text-slate-500">
-              Uyumlu olduğumuz markalardan parça ve ECU çözümlerine ulaşın.
+              Opel araçlarınız için ECU, sensör ve elektronik modül çözümleri.
             </p>
           </div>
 

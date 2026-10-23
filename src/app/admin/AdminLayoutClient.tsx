@@ -152,7 +152,7 @@ export default function AdminLayout({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${unreadChatsCount} okunmamış sohbet`}
-              className="shrink-0 px-2 py-1 rounded-full bg-amber-500 text-white text-[11px] font-bold"
+              className="shrink-0 px-2 py-1 rounded-full bg-amber-500 text-slate-950 text-[11px] font-bold"
             >
               {unreadChatsCount}
             </Link>
@@ -180,9 +180,9 @@ export default function AdminLayout({
             >
               <Image
                 src="/images/logo_transparent.webp"
-                alt="Beyin Deposu"
-                width={160}
-                height={40}
+                alt="Berat Elektronik"
+                width={682}
+                height={120}
                 preload
                 loading="eager"
                 className="h-8 w-auto object-contain"

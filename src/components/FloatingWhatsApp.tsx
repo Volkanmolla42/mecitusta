@@ -40,7 +40,7 @@ export default function FloatingWhatsApp() {
                 <WhatsAppIcon className="w-5 h-5 fill-white text-white" />
               </div>
               <div>
-                <h4 className="font-semibold text-sm">Beyin Deposu WhatsApp</h4>
+                <h4 className="font-semibold text-sm">Mecit Usta WhatsApp</h4>
               </div>
             </div>
             <button

@@ -6,7 +6,7 @@ import ConvexAuthIsland from "@/app/ConvexAuthIsland";
 import SiteLoading from "@/components/SiteLoading";
 
 export const metadata: Metadata = {
-  title: { absolute: "Yönetim Paneli | Beyin Deposu" },
+  title: { absolute: "Yönetim Paneli | Mecit Usta" },
   robots: { index: false, follow: false },
 };
 

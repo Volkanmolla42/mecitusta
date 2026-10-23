@@ -23,8 +23,8 @@ export async function requireAdminApiRequest(request: Request) {
   }
   if (sourceOrigin) {
     const isProdDomain =
-      sourceOrigin === "https://beyindeposu.com" ||
-      sourceOrigin === "https://www.beyindeposu.com" ||
+      sourceOrigin === "https://mecitusta.com" ||
+      sourceOrigin === "https://www.mecitusta.com" ||
       (process.env.SITE_URL ? sourceOrigin === new URL(process.env.SITE_URL).origin : false);
 
     const isMatchingOrigin =

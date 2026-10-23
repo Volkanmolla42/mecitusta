@@ -250,7 +250,7 @@ export default function ProductCatalogClient() {
       <HeroBanner
         src="/images/catalog-parts-hero.jpg"
         alt="Oto Elektronik Parça Kataloğu"
-        eyebrow="Beyin Deposu Parça Kataloğu"
+        eyebrow="Mecit Usta Parça Kataloğu"
         title={activeListingTitle}
         description={`${hasActiveFilters ? "Seçtiğiniz filtrelere uygun orijinal oto elektronik parçaları listeleniyor." : "Tüm araç modelleri için test edilmiş, garantili orijinal oto beyinleri, kontrol üniteleri ve modülleri."}${partCountLabel ? ` (${partCountLabel})` : ""}`}
       />

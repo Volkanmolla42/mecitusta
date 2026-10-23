@@ -5,32 +5,39 @@ import { Button } from "@/components/ui/button";
 
 export default function ProblemCta() {
   return (
-    <div className="relative rounded-3xl overflow-hidden bg-dark-bg text-white p-8 sm:p-12 lg:p-14 border border-white/10 shadow-2xl">
-      <div className="absolute inset-y-0 right-0 w-full md:w-3/5 opacity-35 md:opacity-55 pointer-events-none select-none">
+    <section className="relative overflow-hidden border-b border-white/10 bg-dark-bg text-white">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-full select-none md:w-[58%]">
         <Image
-          src="/images/cta-car-banner.jpg"
-          alt="Aracınızda bir sorun mu var?"
+          src="/images/cta-opel-banner.webp"
+          alt="Opel araç"
           fill
-          className="object-cover object-right"
-          sizes="(max-width: 768px) 100vw, 60vw"
+          sizes="(min-width: 768px) 58vw, 100vw"
+          className="object-cover object-left"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg via-dark-bg/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/60 via-dark-bg/85 to-dark-bg md:from-dark-bg/20 md:via-dark-bg/75 md:to-dark-bg" />
       </div>
 
-      <div className="relative z-10 max-w-xl">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
-          Aracınızda bir sorun mu var?
-        </h2>
-        <p className="text-sm sm:text-base text-slate-300 mb-6 sm:mb-8 leading-relaxed">
-          Uzman ekibimizden destek alın. Aracınız için en doğru çözümü birlikte bulalım.
-        </p>
-        <Button asChild variant="default" size="lg" className="rounded-full shadow-md font-semibold">
-          <Link href="/iletisim">
-            <span>Hemen İletişime Geç</span>
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </Button>
+      <div className="container relative z-10 py-10 sm:py-12">
+        <div className="md:ml-auto md:w-[55%] lg:w-[58%]">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <h2 className="max-w-xl text-xl font-bold leading-tight tracking-tight text-white sm:text-2xl">
+              <span className="block">Opel Araçlarınızın</span>
+              <span className="block">Elektronik ve Şanzıman Ünitelerinde</span>
+              <span className="block">Profesyonel Çözüm</span>
+            </h2>
+            <Button
+              asChild
+              size="lg"
+              className="w-fit shrink-0 rounded-lg px-6 text-sm shadow-none sm:text-base"
+            >
+              <Link href="/iletisim">
+                İletişim
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

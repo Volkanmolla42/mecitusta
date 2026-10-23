@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
-export const SITE_NAME = "Beyin Deposu";
-export const SITE_TITLE = "Beyin Deposu | Oto Elektronik Parça Merkezi";
+export const SITE_NAME = "Mecit Usta";
+export const SITE_TITLE = "Mecit Usta | Oto Elektronik Parça Merkezi";
 export const SITE_URL = new URL(
-  process.env.SITE_URL?.trim() || "https://beyindeposu.com",
+  process.env.SITE_URL?.trim() || "https://mecitusta.com",
 ).origin;
 export const SITE_DESCRIPTION =
-  "ECU, ABS, airbag ve diğer oto elektronik parçaları. Parça uyumluluğu, stok ve sipariş bilgisi için Beyin Deposu ile iletişime geçin.";
+  "ECU, ABS, airbag ve diğer oto elektronik parçaları. Parça uyumluluğu, stok ve sipariş bilgisi için Mecit Usta ile iletişime geçin.";
 export const SEO_IMAGE = "/images/seo-cover.webp";
 
 export const ORGANIZATION_JSON_LD = {

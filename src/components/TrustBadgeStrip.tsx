@@ -13,8 +13,9 @@ interface TrustBadgeStripProps {
   /**
    * "strip": Sayfa üstü / hero altı tam genişlikli yatay şerit (varsayılan)
    * "cards": Sayfa içi / CTA altı kutulu kart ızgarası
+   * "hero": Ana sayfa hero altı 5 sütunlu güven şeridi
    */
-  variant?: "strip" | "cards";
+  variant?: "strip" | "cards" | "hero";
 }
 
 export default function TrustBadgeStrip({
@@ -51,6 +52,37 @@ export default function TrustBadgeStrip({
           </div>
         ))}
       </div>
+    );
+  }
+
+  if (variant === "hero") {
+    return (
+      <section className={cn("border-b border-slate-200/80 bg-white", className)}>
+        <div className="container">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+            {items.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex min-w-0 items-center gap-3.5 border-b border-slate-200/70 px-0 py-5 last:border-b-0 sm:border-b-0 sm:px-4 lg:border-l lg:border-slate-200/80 lg:px-6 lg:first:border-l-0"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-amber-300 bg-amber-50 text-amber-600">
+                  <item.icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div className="min-w-0">
+                  <h4 className="text-sm font-semibold leading-snug text-slate-900">
+                    {item.title}
+                  </h4>
+                  {item.description && (
+                    <p className="mt-1 text-xs leading-snug text-slate-500">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     );
   }
 

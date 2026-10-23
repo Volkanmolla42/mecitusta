@@ -24,7 +24,7 @@ export default function BlogJsonLd({ blog }: { blog: BlogDetail }) {
     inLanguage: "tr-TR",
     author: {
       "@type": "Organization",
-      name: "Beyin Deposu Teknik Ekibi",
+      name: "Mecit Usta Teknik Ekibi",
       url: SITE_URL,
     },
     publisher: {
@@ -42,7 +42,7 @@ export default function BlogJsonLd({ blog }: { blog: BlogDetail }) {
     },
     isPartOf: {
       "@type": "Blog",
-      name: "Beyin Deposu Blog",
+      name: "Mecit Usta Blog",
       url: `${SITE_URL}/blog`,
     },
     articleSection: blog.category,

@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-amber-500 text-slate-950 font-semibold shadow-sm hover:bg-amber-400 active:bg-amber-600",
+          "bg-amber-500 text-slate-950 font-semibold shadow-sm hover:bg-amber-400 active:bg-amber-300",
         whatsapp:
           "bg-emerald-700 text-white shadow-sm hover:bg-emerald-800 font-semibold",
         destructive:

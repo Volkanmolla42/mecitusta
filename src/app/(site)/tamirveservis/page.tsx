@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import HeroBanner from "@/components/ui/HeroBanner";
 import { Button } from "@/components/ui/button";
-import ProblemCta from "@/components/ProblemCta";
 import TrustBadgeStrip from "@/components/TrustBadgeStrip";
 import { createPageMetadata, serializeJsonLd, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { listPublicServices } from "@/lib/services-data";
@@ -116,7 +115,7 @@ export default async function TamirVeServisPage() {
       {/* Hero Banner */}
       <HeroBanner
         src="/images/services/tamir-hero.jpg"
-        alt="Beyin Deposu Tamir ve Servis Atölyesi"
+        alt="Mecit Usta Tamir ve Servis Atölyesi"
         eyebrow="Uzman Kadro • Modern Teknoloji • Güvenilir Çözümler"
         title="Tamir & Servis"
         description="Aracınızın tüm mekanik ve elektronik ihtiyaçları için profesyonel tamir ve servis hizmetleri sunuyoruz."
@@ -206,11 +205,7 @@ export default async function TamirVeServisPage() {
       )}
       </section>
 
-      {/* Aracınızda Sorun mu Var? Bölümü & Altındaki 4 Bilgi Kartı */}
       <section className="container pb-16 sm:pb-24">
-        <ProblemCta />
-
-        {/* Alt 4 Bilgi Kartı */}
         <TrustBadgeStrip
           items={bottomFeatures}
           variant="cards"

@@ -101,7 +101,7 @@ export const getOrCreateConversation = mutation({
     await ctx.db.insert("messages", {
       conversationId: newConvId,
       sender: "system",
-      text: "Beyin Deposu Canlı Destek hattına hoş geldiniz! Uzman teknik ekibimiz en kısa sürede size yanıt verecektir.",
+      text: "Mecit Usta Canlı Destek hattına hoş geldiniz! Uzman teknik ekibimiz en kısa sürede size yanıt verecektir.",
       isRead: true,
       createdAt: now,
     });

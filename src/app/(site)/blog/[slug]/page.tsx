@@ -24,7 +24,7 @@ export async function generateStaticParams() {
 }
 
 function metadataTitle(title: string): string {
-  const branded = `${title} | Beyin Deposu Blog`;
+  const branded = `${title} | Mecit Usta Blog`;
   return branded.length <= 65 ? branded : title;
 }
 
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { absolute: title },
     description,
     keywords: blog.tags,
-    authors: [{ name: "Beyin Deposu Teknik Ekibi", url: SITE_URL }],
+    authors: [{ name: "Mecit Usta Teknik Ekibi", url: SITE_URL }],
     alternates: { canonical: `/blog/${blog.slug}` },
     openGraph: {
       type: "article",

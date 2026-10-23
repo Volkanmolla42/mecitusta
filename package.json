@@ -1,5 +1,5 @@
 {
-  "name": "beyindeposu",
+  "name": "mecitusta",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:analytics": "vitest run",
-    "deploy": "git pull && npm i && npm run build && pm2 restart beyindeposu"
+    "deploy": "git pull && npm i && npm run build && pm2 restart mecitusta"
   },
   "dependencies": {
     "@convex-dev/auth": "^0.0.95",

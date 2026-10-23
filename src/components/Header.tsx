@@ -35,16 +35,16 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-dark-bg/95 text-white backdrop-blur">
       <div className="container">
         <div className="flex h-16 items-center justify-between sm:h-[72px]">
-          <Link href="/" aria-label="Beyin Deposu ana sayfa" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none">
+          <Link href="/" aria-label="Berat Elektronik ana sayfa" className="flex shrink-0 items-center rounded-lg focus-visible:outline-none">
             <Image
-              src="/images/logo_transparent.webp"
-              alt="Beyin Deposu ana sayfa"
-              width={160}
-              height={40}
+              src="/images/logo_dark.webp"
+              alt="Berat Elektronik ana sayfa"
+              width={682}
+              height={120}
               preload
               loading="eager"
               style={{ width: "auto" }}
-              className="h-9 w-auto object-contain sm:h-10 brightness-0 invert"
+              className="h-8 w-auto object-contain sm:h-9 xl:h-10"
             />
           </Link>
 
@@ -89,7 +89,7 @@ export default function Header() {
                 className="min-w-0 flex-1 border-0 bg-transparent px-2 py-2 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
                 autoFocus
               />
-              <button type="submit" className="rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-400 active:bg-amber-600">
+              <button type="submit" className="rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-400 active:bg-amber-300">
                 Ara
               </button>
             </form>

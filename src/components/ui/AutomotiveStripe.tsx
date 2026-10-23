@@ -19,14 +19,14 @@ export default function AutomotiveStripe({
       className={`w-full overflow-hidden select-none pointer-events-none ${className}`}
       aria-hidden="true"
     >
-      <div className={`w-full bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.35)] ${solidHeight}`} />
+      <div className={`w-full bg-amber-500 shadow-[0_0_12px_rgba(255,209,0,0.35)] ${solidHeight}`} />
       <div
         className={`w-full ${hazardHeight}`}
         style={{
           background: `repeating-linear-gradient(
             -45deg,
-            #fbbf24,
-            #fbbf24 ${stripeWidth}px,
+            #ffd100,
+            #ffd100 ${stripeWidth}px,
             #0B0D10 ${stripeWidth}px,
             #0B0D10 ${stripeWidth * 2}px
           )`,

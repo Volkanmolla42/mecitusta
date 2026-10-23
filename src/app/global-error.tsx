@@ -13,7 +13,7 @@ export default function GlobalError({
   return (
     <html lang="tr">
       <body className="min-h-screen bg-slate-50 font-sans antialiased">
-        <title>Bir hata oluştu | Beyin Deposu</title>
+        <title>Bir hata oluştu | Mecit Usta</title>
         <RouteErrorState error={error} retry={retry} />
       </body>
     </html>

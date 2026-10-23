@@ -71,7 +71,7 @@ export default function BlogArticle({ blog, relatedBlogs }: BlogArticleProps) {
           <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden border border-slate-200/90 bg-white p-1.5 shrink-0 shadow-xs">
             <Image
               src="/images/logo-mark.webp"
-              alt="Beyin Deposu"
+              alt="Mecit Usta"
               width={56}
               height={56}
               className="h-full w-full object-contain"
@@ -82,7 +82,7 @@ export default function BlogArticle({ blog, relatedBlogs }: BlogArticleProps) {
               Yazar
             </span>
             <h4 className="text-sm sm:text-base font-bold text-slate-900 truncate">
-              Beyin Deposu Teknik Ekibi
+              Mecit Usta Teknik Ekibi
             </h4>
             <p className="text-xs text-slate-500 mt-0.5 line-clamp-2 leading-relaxed">
               Oto beyin (ECU), ABS beyni, mekatronik ve otomotiv elektronik

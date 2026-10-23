@@ -1,6 +1,6 @@
-# Beyin Deposu Tasarım Sistemi & Bileşen Kütüphanesi
+# Mecit Usta Tasarım Sistemi & Bileşen Kütüphanesi
 
-Bu belge, **Beyin Deposu** projesinin tasarım temellerini, belirteçlerini, bileşen ailelerini ve mevcut tasarım borçlarını belgeler.
+Bu belge, **Mecit Usta** projesinin tasarım temellerini, belirteçlerini, bileşen ailelerini ve mevcut tasarım borçlarını belgeler.
 
 ---
 
@@ -10,18 +10,21 @@ Tasarım sistemi, Tailwind CSS v4 `@theme` yapısı ve Google Material Design 3 
 
 ### 1.1. Renk Paleti (Color Tokens)
 
-#### Birincil Marka & Vurgu Renk Skalası (`amber-*`):
-- `--color-amber-50`: `#fffbeb` (Hafif sıcak vurgular)
-- `--color-amber-100`: `#fef3c7` (Çip ve rozet arkaplanları)
-- `--color-amber-200`: `#fde68a` (Hafif kenarlıklar ve odak halkaları)
-- `--color-amber-300`: `#fcd34d`
-- `--color-amber-400`: `#fbbf24` (Aktif menü çizgisi, hover butonları)
-- `--color-amber-500`: `#f59e0b` (Ana marka rengi, birincil butonlar)
-- `--color-amber-600`: `#d97706` (Hover durumları, vurgulu bağlantılar)
-- `--color-amber-700`: `#b45309` (Yüksek kontrastlı metinler)
-- `--color-amber-800`: `#92400e`
-- `--color-amber-900`: `#78350f`
-- `--color-amber-950`: `#451a03`
+#### Birincil Marka & Vurgu Renk Skalası (`amber-*`, Opel Yellow):
+- Opel Yellow, `#FFD100` (marka sarısı).
+- `--color-amber-50`: `#fffdf0` (Hafif sarı vurgular)
+- `--color-amber-100`: `#fffbe0` (Çip ve rozet arkaplanları)
+- `--color-amber-200`: `#fff7bf` (Hafif kenarlıklar ve odak halkaları)
+- `--color-amber-300`: `#ffef80`
+- `--color-amber-400`: `#ffe63d` (Aktif menü çizgisi, hover butonları)
+- `--color-amber-500`: `#ffd100` (Ana marka rengi, birincil butonlar, logo sarısı)
+- `--color-amber-600`: `#8a7200` (Vurgulu bağlantılar, koyu zeminli butonlar)
+- `--color-amber-700`: `#6b5800` (Yüksek kontrastlı metinler)
+- `--color-amber-800`: `#504200`
+- `--color-amber-900`: `#352c00`
+- `--color-amber-950`: `#1f1a00`
+
+> `amber-*` sınıf adları geriye dönük uyumluluk için korunmuştur; tümü Opel sarısı ölçeğine bağlıdır.
 
 #### Koyu Kabuk ve Tech Renk Skalası (`dark-*`):
 - `--color-dark-bg`: `#0b0d10` (Header, Hero, Footer derin siyah arkaplan)
@@ -43,10 +46,11 @@ Tasarım sistemi, Tailwind CSS v4 `@theme` yapısı ve Google Material Design 3 
 - `--color-slate-950`: `#0b0d10` (Maksimum kontrastlı metinler)
 
 #### Anlamsal Renk Belirteçleri (Semantic / Material Design 3 Tokens):
-- `--md-primary`: `#f59e0b`
+- `--md-primary`: `#ffd100` (Opel Yellow, ana marka rengi)
 - `--md-on-primary`: `#0a0b0d`
-- `--md-primary-container`: `#fef3c7`
-- `--md-on-primary-container`: `#78350f`
+- `--md-primary-container`: `#fff7bf`
+- `--md-on-primary-container`: `#352c00`
+- `--md-focus-ring`: `#8a7200` (Odak halkaları)
 - `--md-surface`: `#f8fafd`
 - `--md-surface-container`: `#f1f3f4`
 - `--md-on-surface`: `#1f1f1f`
@@ -95,7 +99,7 @@ Sistem, Google Fonts üzerinden sağlanan modern ve okunaklı iki font ailesini 
 ## 2. Bileşen Ailesi Envanteri (Component Families)
 
 ### 2.1. Buton Ailesi (Actions: Button & Link)
-- **Kaynak Dosya:** [`src/components/ui/button.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ui/button.tsx)
+- **Kaynak Dosya:** [`src/components/ui/button.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/button.tsx)
 - **Top-Level Bileşen:** `Button`
 - **Radix Entegrasyonu:** Radix UI `Slot` tabanlı `asChild` desteği (`<a>` etiketleri ile semantik kusursuz uyum).
 - **Varyant Ekseni (`variant`):**
@@ -121,10 +125,10 @@ Sistem, Google Fonts üzerinden sağlanan modern ve okunaklı iki font ailesini 
 ---
 
 ### 2.2. Rozet ve Durum Ailesi (Identity & Status: Badge)
-- **Kaynak Dosya:** [`src/components/ui/badge.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ui/badge.tsx)
+- **Kaynak Dosya:** [`src/components/ui/badge.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/badge.tsx)
 - **Top-Level Bileşen:** `Badge`
 - **Varyant Ekseni (`variant`):**
-  - `default`: Marka kehribar (`bg-amber-500 text-slate-950 font-semibold`).
+  - `default`: Marka Opel sarısı (`bg-amber-500 text-slate-950 font-semibold`).
   - `secondary`: Nötr gri (`bg-slate-100 text-slate-900`).
   - `destructive`: Kırmızı hata (`bg-red-500 text-white`).
   - `outline`: İnce gri çerçeve (`text-slate-700 border-slate-300`).
@@ -139,10 +143,10 @@ Sistem, Google Fonts üzerinden sağlanan modern ve okunaklı iki font ailesini 
 
 ### 2.3. Form ve Arama Ailesi (Forms & Selection)
 - **Bileşenler:**
-  - `Input`: [`src/components/ui/input.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ui/input.tsx) — 44px dokunmatik hedefli, odak halkalı metin girişi.
-  - `Textarea`: [`src/components/ui/textarea.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ui/textarea.tsx) — Çok satırlı açıklamalar ve notlar.
-  - `SearchableCombobox`: [`src/components/ui/searchable-combobox.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ui/searchable-combobox.tsx) — Klavye destekli, filtrelenebilir tekli/çoklu seçim açılır kutusu.
-  - `OemSearchBar`: [`src/components/OemSearchBar.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/OemSearchBar.tsx) — Gerçek zamanlı arama, OEM kodu eşleştirme ve önizleme kartları sunan küresel arama motoru bileşeni (`variant: "hero" | "header"`).
+  - `Input`: [`src/components/ui/input.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/input.tsx) — 44px dokunmatik hedefli, odak halkalı metin girişi.
+  - `Textarea`: [`src/components/ui/textarea.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/textarea.tsx) — Çok satırlı açıklamalar ve notlar.
+  - `SearchableCombobox`: [`src/components/ui/searchable-combobox.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/searchable-combobox.tsx) — Klavye destekli, filtrelenebilir tekli/çoklu seçim açılır kutusu.
+  - `OemSearchBar`: [`src/components/OemSearchBar.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/OemSearchBar.tsx) — Gerçek zamanlı arama, OEM kodu eşleştirme ve önizleme kartları sunan küresel arama motoru bileşeni (`variant: "hero" | "header"`).
 - **Kullanım Kılavuzu:**
   - Arama alanlarında kullanıcıya hızlı temizleme butonu (`✕`) ve büyük harf monospaced OEM desteği sunun.
   - Tüm form kontrollerine erişilebilir etiket (`<label htmlFor="...">` ve `aria-label`) verilmesi zorunludur.
@@ -151,8 +155,8 @@ Sistem, Google Fonts üzerinden sağlanan modern ve okunaklı iki font ailesini 
 
 ### 2.4. Parça Sergileme ve Kart Ailesi (Catalog: ProductCard & ModernImageZoom)
 - **Bileşenler:**
-  - `ProductCard`: [`src/components/ProductCard.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ProductCard.tsx) — Parça görseli, başlığı, OEM numarası, araç markası, durum rozetleri ve doğrudan WhatsApp fiyat sorma CTA'sını barındıran temel katalog kartı.
-  - `ModernImageZoom`: [`src/components/ModernImageZoom.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ModernImageZoom.tsx) — Çok katmanlı parça görseli inceleme; çift tık, tekerlek kaydırma, sürükleme (pan), pinch-to-zoom ve sıfırlama butonları barındırır.
+  - `ProductCard`: [`src/components/ProductCard.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ProductCard.tsx) — Parça görseli, başlığı, OEM numarası, araç markası, durum rozetleri ve doğrudan WhatsApp fiyat sorma CTA'sını barındıran temel katalog kartı.
+  - `ModernImageZoom`: [`src/components/ModernImageZoom.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ModernImageZoom.tsx) — Çok katmanlı parça görseli inceleme; çift tık, tekerlek kaydırma, sürükleme (pan), pinch-to-zoom ve sıfırlama butonları barındırır.
 - **Kullanım Kılavuzu:**
   - Görsellerde daima Next.js `<Image />` bileşeni kullanılmalı ve `aspect-4/3` oranı korunmalıdır.
 
@@ -160,9 +164,9 @@ Sistem, Google Fonts üzerinden sağlanan modern ve okunaklı iki font ailesini 
 
 ### 2.5. İletişim ve Canlı Destek Ailesi (Feedback & Overlays)
 - **Bileşenler:**
-  - `LiveChatWidget`: [`src/components/LiveChatWidget.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/LiveChatWidget.tsx) — Ziyaretçilerin doğrudan Convex backend'i üzerinden müşteri temsilcisi ile yazışabildiği, aktif parça kartı ekleyebildiği canlı sohbet widget'ı.
-  - `FloatingWhatsApp`: [`src/components/FloatingWhatsApp.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/FloatingWhatsApp.tsx) — Sayfanın sol alt köşesinde sabit duran, tek tıkla mesaj taslağı hazırlayıp WhatsApp Web/App başlatan hızlı iletişim butonu.
-  - `Dialog`: [`src/components/ui/dialog.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ui/dialog.tsx) — Radix UI tabanlı modal pencere sistemi.
+  - `LiveChatWidget`: [`src/components/LiveChatWidget.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/LiveChatWidget.tsx) — Ziyaretçilerin doğrudan Convex backend'i üzerinden müşteri temsilcisi ile yazışabildiği, aktif parça kartı ekleyebildiği canlı sohbet widget'ı.
+  - `FloatingWhatsApp`: [`src/components/FloatingWhatsApp.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/FloatingWhatsApp.tsx) — Sayfanın sol alt köşesinde sabit duran, tek tıkla mesaj taslağı hazırlayıp WhatsApp Web/App başlatan hızlı iletişim butonu.
+  - `Dialog`: [`src/components/ui/dialog.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/dialog.tsx) — Radix UI tabanlı modal pencere sistemi.
 
 ---
 
@@ -170,15 +174,15 @@ Sistem, Google Fonts üzerinden sağlanan modern ve okunaklı iki font ailesini 
 Uygulama kabuğu, projenin tüm sayfalarını saran temel iskelettir:
 
 - **1. Klavye Atlama Çubuğu (`Skip to Content`):**
-  - Dosya: [`src/app/(site)/layout.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/app/(site)/layout.tsx)
+  - Dosya: [`src/app/(site)/layout.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/app/(site)/layout.tsx)
   - Klavye kullanıcısı `Tab` tuşuna bastığında en üstte belirir ve doğrudan `#main-content` alanına atlar.
 - **2. Üst Gezinme Çubuğu (`Header`):**
-  - Dosya: [`src/components/Header.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/Header.tsx)
-  - İçerik: Beyin Deposu logosu, küresel arama çubuğu (`OemSearchBar`), parça kataloğu bağlantıları, kurumsal sayfalar ve doğrudan arama butonu.
+  - Dosya: [`src/components/Header.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/Header.tsx)
+  - İçerik: Mecit Usta logosu, küresel arama çubuğu (`OemSearchBar`), parça kataloğu bağlantıları, kurumsal sayfalar ve doğrudan arama butonu.
 - **3. Ana İçerik Bölgesi (`Main Content Region`):**
   - `container` sınıfı ile sınırlandırılmış, 96rem (1536px) genişlikte responsive flex/grid alanı; 2xl kırılımında 95rem.
 - **4. Alt Bilgi Çubuğu (`Footer`):**
-  - Dosya: [`src/components/Footer.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/Footer.tsx)
+  - Dosya: [`src/components/Footer.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/Footer.tsx)
   - Kurumsal bilgiler, hızlı linkler, KVKK/kargo politikaları, Routart stüdyo imzası ve telif hakları.
 - **5. Yüzen Eylem Katmanı (`Floating Action Layer`):**
   - Sol altta `FloatingWhatsApp`, sağ altta `LiveChatWidget`.
@@ -186,7 +190,7 @@ Uygulama kabuğu, projenin tüm sayfalarını saran temel iskelettir:
 ---
 
 ### 2.7. Yönetim Paneli Sayfa Başlığı (`AdminPageHeader`)
-- **Kaynak Dosya:** [`src/components/admin/AdminPageHeader.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/admin/AdminPageHeader.tsx)
+- **Kaynak Dosya:** [`src/components/admin/AdminPageHeader.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/admin/AdminPageHeader.tsx)
 - **Top-Level Bileşen:** `AdminPageHeader`
 - **Tasarım Standartları:**
   - Tüm yönetim (`/admin/*`) sayfalarında standart beyaz kart kabuğu (`rounded-2xl border border-slate-200 bg-white p-5 shadow-xs sm:flex-row sm:items-center sm:justify-between sm:p-6`).
@@ -197,7 +201,7 @@ Uygulama kabuğu, projenin tüm sayfalarını saran temel iskelettir:
 - **Kullanıldığı Sayfalar:** Parçalar (`/admin/products`), Kategoriler (`/admin/categories`), Markalar (`/admin/brands`), Toplu Aktarım (`/admin/batch-import`), Analitik (`/admin/analytics`).
 
 ### 2.8. Hero Başlık Alanları (`HeroBanner`)
-- **Kaynak Dosya:** [`src/components/ui/HeroBanner.tsx`](file:///c:/Users/volkan/Desktop/beyindeposu/src/components/ui/HeroBanner.tsx)
+- **Kaynak Dosya:** [`src/components/ui/HeroBanner.tsx`](file:///c:/Users/volkan/Desktop/mecitusta/src/components/ui/HeroBanner.tsx)
 - **Top-Level Bileşen:** `HeroBanner`
 - **Tasarım Standartları:**
   - Tüm sayfalarda görsel karartma ve dikey yükseklik tutarlılığı sağlar.

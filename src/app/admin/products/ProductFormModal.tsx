@@ -1081,7 +1081,7 @@ function ProductImagePanel({
                   className="h-full w-full object-contain"
                 />
                 {index === 0 && (
-                  <span className="absolute bottom-1 left-1 rounded-full bg-amber-500 p-0.5 text-white">
+                  <span className="absolute bottom-1 left-1 rounded-full bg-amber-500 p-0.5 text-slate-950">
                     <Check className="h-3 w-3" />
                   </span>
                 )}

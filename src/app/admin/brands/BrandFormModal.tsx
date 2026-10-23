@@ -468,7 +468,7 @@ function BrandFormModalContent({
                 </label>
                 <Input
                   id="brand-meta-title"
-                  placeholder="Volkswagen Beyin Tamiri ve ECU Fiyatları | Beyin Deposu"
+                  placeholder="Volkswagen Beyin Tamiri ve ECU Fiyatları | Mecit Usta"
                   value={form.metaTitle}
                   onChange={(e) => updateField("metaTitle", e.target.value)}
                   className="h-11 rounded-xl border-slate-300 bg-white text-sm"

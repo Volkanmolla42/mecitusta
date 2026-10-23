@@ -747,7 +747,7 @@ export default function BatchImportPage() {
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-amber-500 px-5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-amber-600 sm:w-auto"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-amber-500 px-5 text-sm font-semibold text-slate-950 shadow-xs transition-colors hover:bg-amber-400 sm:w-auto"
             >
               <FolderUp className="h-4 w-4" />
               <span>Klasör seç ve önizle</span>
@@ -789,7 +789,7 @@ export default function BatchImportPage() {
                       type="button"
                       onClick={() => startProcessing("ai")}
                       disabled={categories.length === 0}
-                      className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-amber-500 px-4 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-amber-600 sm:w-auto"
+                      className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-amber-500 px-4 text-sm font-semibold text-slate-950 shadow-xs transition-colors hover:bg-amber-400 sm:w-auto"
                       title="Yapay zeka ile görselleri tarayıp OEM, başlık ve marka bilgilerini otomatik çıkartır"
                     >
                       <Play className="h-4 w-4 fill-current" />

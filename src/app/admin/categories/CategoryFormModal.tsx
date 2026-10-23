@@ -486,7 +486,7 @@ function CategoryFormModalContent({
                 </label>
                 <Input
                   id="category-meta-title"
-                  placeholder="Motor Beyinleri ve ECU Fiyatları | Beyin Deposu"
+                  placeholder="Motor Beyinleri ve ECU Fiyatları | Mecit Usta"
                   value={form.metaTitle}
                   onChange={(e) => updateField("metaTitle", e.target.value)}
                   className="h-11 rounded-xl border-slate-300 bg-white text-sm"

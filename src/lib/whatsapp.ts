@@ -20,7 +20,7 @@ function cleanPhoneNumber(phoneNumber: string): string {
 }
 
 /**
- * Formats phone number for display (e.g. 0534 065 32 22).
+ * Formats phone number for display (e.g. 0555 123 45 67).
  */
 export function formatPhoneNumber(phoneNumber?: string): string {
   if (!phoneNumber) return "";
@@ -50,11 +50,11 @@ export function getWhatsAppUrl(
   let message = "";
 
   if (!target) {
-    message = "Merhaba Beyin Deposu, oto elektronik parça talebinde bulunmak istiyorum.";
+    message = "Merhaba Mecit Usta, oto elektronik parça talebinde bulunmak istiyorum.";
   } else if ("message" in target && target.message) {
     message = target.message;
   } else if ("oemNumber" in target && target.oemNumber) {
-    message = `Merhaba Beyin Deposu, ${target.oemNumber} OEM kodlu parça hakkında bilgi ve fiyat almak istiyorum.`;
+    message = `Merhaba Mecit Usta, ${target.oemNumber} OEM kodlu parça hakkında bilgi ve fiyat almak istiyorum.`;
   } else if ("product" in target && target.product) {
     const { title, oemNumber, action, productUrl } = target.product;
     if (action === "price_and_stock") {
@@ -67,15 +67,15 @@ export function getWhatsAppUrl(
         : `Merhaba, ${title} hakkında fiyat bilgisi alabilir miyim?`;
     } else {
       message = oemNumber
-        ? `Merhaba Beyin Deposu, web sitenizden ${title} (OEM No: ${oemNumber}) parçası hakkında bilgi ve fiyat almak istiyorum. Stok durumu nedir?`
-        : `Merhaba Beyin Deposu, web sitenizden ${title} hakkında bilgi almak istiyorum.`;
+        ? `Merhaba Mecit Usta, web sitenizden ${title} (OEM No: ${oemNumber}) parçası hakkında bilgi ve fiyat almak istiyorum. Stok durumu nedir?`
+        : `Merhaba Mecit Usta, web sitenizden ${title} hakkında bilgi almak istiyorum.`;
     }
 
     if (productUrl) {
       message = `${message}\n\nÜrün linki: ${productUrl}`;
     }
   } else {
-    message = "Merhaba Beyin Deposu, oto elektronik parça talebinde bulunmak istiyorum.";
+    message = "Merhaba Mecit Usta, oto elektronik parça talebinde bulunmak istiyorum.";
   }
 
   return `https://wa.me/${clean}?text=${encodeURIComponent(message)}`;

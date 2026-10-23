@@ -245,7 +245,7 @@ export default function AnalyticsProvider() {
                 size="sm"
                 disabled={busy}
                 aria-busy={busy}
-                className="w-full sm:w-auto h-9 shrink-0 rounded-xl px-5 text-xs font-semibold bg-amber-500 hover:bg-amber-600 text-white cursor-pointer shadow-xs"
+                className="w-full sm:w-auto h-9 shrink-0 rounded-xl px-5 text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 cursor-pointer shadow-xs"
                 onClick={() => void choose("granted")}
               >
                 Kabul et

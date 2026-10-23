@@ -4,7 +4,7 @@ import ConvexAuthIsland from "@/app/ConvexAuthIsland";
 import SiteLoading from "@/components/SiteLoading";
 
 export const metadata: Metadata = {
-  title: { absolute: "Giriş | Beyin Deposu" },
+  title: { absolute: "Giriş | Mecit Usta" },
   alternates: { canonical: "/login" },
   robots: { index: false, follow: false },
 };

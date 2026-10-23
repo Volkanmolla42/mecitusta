@@ -50,11 +50,11 @@ export default function LoginPage() {
         <Link href="/" className="inline-block">
           <Image
             src="/images/logo.webp"
-            alt="Beyin Deposu"
-            width={1027}
-            height={581}
+            alt="Berat Elektronik"
+            width={700}
+            height={381}
             preload
-            className="h-20 w-auto mx-auto object-contain"
+            className="h-24 w-auto mx-auto object-contain"
           />
         </Link>
         <h2 className="mt-6 text-xl font-bold tracking-tight text-slate-900">
@@ -123,7 +123,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full rounded-full bg-amber-500 py-2.5 px-4 text-sm font-medium text-white shadow-sm hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:opacity-50 transition-colors cursor-pointer"
+              className="w-full rounded-full bg-amber-500 py-2.5 px-4 text-sm font-medium text-slate-950 shadow-sm hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:opacity-50 transition-colors cursor-pointer"
             >
               {isPending ? "Giriş yapılıyor..." : "Giriş yap"}
             </button>

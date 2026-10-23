@@ -20,7 +20,7 @@ import { useQuery, useMutation } from "convex/react";
 import { api } from "@convex/_generated/api";
 
 let audioContextInstance: AudioContext | null = null;
-const VISITOR_STORAGE_CHANGE_EVENT = "beyindeposu:visitor-storage-change";
+const VISITOR_STORAGE_CHANGE_EVENT = "mecitusta:visitor-storage-change";
 
 function subscribeToVisitorStorage(onChange: () => void) {
   window.addEventListener("storage", onChange);
@@ -98,9 +98,9 @@ function playNotificationSound() {
 export default function LiveChatWidget() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [visitorId, setVisitorId] = useVisitorStorageValue("beyindeposu_visitor_id");
-  const [savedVisitorName, setSavedVisitorName] = useVisitorStorageValue("beyindeposu_visitor_name");
-  const [savedVisitorPhone, setSavedVisitorPhone] = useVisitorStorageValue("beyindeposu_visitor_phone");
+  const [visitorId, setVisitorId] = useVisitorStorageValue("mecitusta_visitor_id");
+  const [savedVisitorName, setSavedVisitorName] = useVisitorStorageValue("mecitusta_visitor_name");
+  const [savedVisitorPhone, setSavedVisitorPhone] = useVisitorStorageValue("mecitusta_visitor_phone");
   const [includeProduct, setIncludeProduct] = useState<boolean>(true);
   const [inputMessage, setInputMessage] = useState("");
   const [isStarting, startTransition] = useTransition();
@@ -112,7 +112,7 @@ export default function LiveChatWidget() {
   useEffect(() => {
     if (visitorId) return;
 
-    const storedVisitorId = getVisitorStorageValue("beyindeposu_visitor_id");
+    const storedVisitorId = getVisitorStorageValue("mecitusta_visitor_id");
     const nextVisitorId = storedVisitorId ||
       "vis_" + Math.random().toString(36).substring(2, 11) + Date.now().toString(36);
     setVisitorId(nextVisitorId);
@@ -344,7 +344,7 @@ export default function LiveChatWidget() {
                       name="visitor-phone"
                       aria-label="Telefon numarası"
                       type="tel"
-                      placeholder="0534 000 00 00"
+                      placeholder="0555 000 00 00"
                       defaultValue={savedVisitorPhone}
                       className="bg-white text-xs h-9"
                     />
@@ -370,7 +370,7 @@ export default function LiveChatWidget() {
                   form="start-chat-form"
                   type="submit"
                   disabled={isStarting}
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs h-10 rounded-xl shadow-md cursor-pointer"
+                  className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs h-10 rounded-xl shadow-md cursor-pointer"
                 >
                   {isStarting ? (
                     <>
@@ -475,7 +475,7 @@ export default function LiveChatWidget() {
                   type="submit"
                   size="sm"
                   disabled={!inputMessage.trim()}
-                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl h-9 w-9 p-0 shrink-0 cursor-pointer shadow-xs"
+                  className="bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl h-9 w-9 p-0 shrink-0 cursor-pointer shadow-xs"
                   aria-label="Mesajı gönder"
                 >
                   <Send className="w-4 h-4" />

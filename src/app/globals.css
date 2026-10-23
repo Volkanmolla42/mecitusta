@@ -36,18 +36,18 @@
   --container-8xl: 90rem;
   --max-width-8xl: 90rem;
 
-  /* Brand Primary Scales: Warm Automotive Amber/Gold Rebrand */
-  --color-amber-50: #fffbeb;
-  --color-amber-100: #fef3c7;
-  --color-amber-200: #fde68a;
-  --color-amber-300: #fcd34d;
-  --color-amber-400: #fbbf24;
-  --color-amber-500: #f59e0b;
-  --color-amber-600: #d97706;
-  --color-amber-700: #b45309;
-  --color-amber-800: #92400e;
-  --color-amber-900: #78350f;
-  --color-amber-950: #451a03;
+  /* Brand Primary Scale: Opel Yellow (#FFD100) */
+  --color-amber-50: #fffdf0;
+  --color-amber-100: #fffbe0;
+  --color-amber-200: #fff7bf;
+  --color-amber-300: #ffef80;
+  --color-amber-400: #ffe63d;
+  --color-amber-500: #ffd100;
+  --color-amber-600: #8a7200;
+  --color-amber-700: #6b5800;
+  --color-amber-800: #504200;
+  --color-amber-900: #352c00;
+  --color-amber-950: #1f1a00;
 
   /* Dark Shell Tokens from Mockup */
   --color-dark-bg: #0b0d10;
@@ -70,10 +70,11 @@
 
 :root {
   color-scheme: light;
-  --md-primary: #f59e0b;
+  --md-primary: #ffd100;
   --md-on-primary: #0a0b0d;
-  --md-primary-container: #fef3c7;
-  --md-on-primary-container: #78350f;
+  --md-primary-container: #fff7bf;
+  --md-on-primary-container: #352c00;
+  --md-focus-ring: #8a7200;
   --md-surface: #f8fafd;
   --md-surface-container: #f1f3f4;
   --md-on-surface: #1f1f1f;
@@ -108,7 +109,7 @@ textarea {
 }
 
 :focus-visible {
-  outline: 2px solid var(--md-primary);
+  outline: 2px solid var(--md-focus-ring);
   outline-offset: 2px;
 }
 
@@ -169,7 +170,7 @@ textarea:focus-visible {
 }
 
 .blog-editor-content:focus-visible {
-  outline: 2px solid var(--md-primary);
+  outline: 2px solid var(--md-focus-ring);
   outline-offset: -2px;
 }
 
@@ -353,5 +354,5 @@ textarea:focus-visible {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: rgb(245 158 11 / 0.12);
+  background: rgb(255 209 0 / 0.12);
 }

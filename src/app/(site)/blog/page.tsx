@@ -1,12 +1,11 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import HeroBanner from "@/components/ui/HeroBanner";
-import ProblemCta from "@/components/ProblemCta";
 import { absoluteUrl, SEO_IMAGE, SITE_NAME } from "@/lib/seo";
 import { listBlogCards, listBlogCategories } from "@/lib/blog-data";
 import BlogListClient from "./BlogListClient";
 
-const BASE_TITLE = "Kronik Arızalar ve Çözümleri | Beyin Deposu Blog";
+const BASE_TITLE = "Kronik Arızalar ve Çözümleri | Mecit Usta Blog";
 const BASE_DESCRIPTION =
   "Oto beyin, mekatronik, şanzıman ve elektronik sistemlerde sık karşılaşılan arızalar, teşhis yöntemleri ve garantili laboratuvar çözümleri.";
 
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
         url: absoluteUrl(SEO_IMAGE),
         width: 1200,
         height: 630,
-        alt: "Beyin Deposu Blog",
+        alt: "Mecit Usta Blog",
       },
     ],
   },
@@ -74,7 +73,7 @@ export default async function BlogPage() {
       <HeroBanner
         src="/images/chronic-faults-hero.jpg"
         alt="Oto Elektronik Uzmanlığı"
-        eyebrow="Beyin Deposu Blog"
+        eyebrow="Mecit Usta Blog"
         title="Kronik Arızalar ve Çözümleri"
         description="Sık karşılaşılan oto elektronik ve mekanik arızaları, belirtilerini ve tamir çözümlerini sizin için derledik."
       />
@@ -83,11 +82,6 @@ export default async function BlogPage() {
         <BlogListClient allBlogs={allBlogs} categories={categories} />
       </Suspense>
 
-      <section className="pb-16 sm:pb-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ProblemCta />
-        </div>
-      </section>
     </div>
   );
 }

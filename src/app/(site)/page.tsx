@@ -3,19 +3,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import HeroBanner from "@/components/ui/HeroBanner";
+import OpelHero from "@/components/OpelHero";
 import {
   ArrowRight,
+  BadgeCheck,
+  Car,
+  Cog,
   Cpu,
   Layers,
+  RefreshCw,
   ShieldCheck,
-  Wrench,
-  Clock,
-  CheckCircle2,
 } from "lucide-react";
-import ProblemCta from "@/components/ProblemCta";
-import OemSearchBar from "@/components/OemSearchBar";
 import TrustBadgeStrip from "@/components/TrustBadgeStrip";
+import TransmissionServiceCards from "@/components/TransmissionServiceCards";
+import LatestVideos from "@/components/LatestVideos";
 import { getPublicCategories, getPublicBrands } from "@/lib/seo-data";
 import { listPublicServices } from "@/lib/services-data";
 import {
@@ -50,81 +51,33 @@ const WEBSITE_JSON_LD = {
   },
 };
 
-function HeroSection() {
-  return (
-    <HeroBanner
-      src="/images/hero-rebrand.jpg"
-      alt="Beyin Deposu ECU ve Oto Elektronik Servisi"
-      size="full"
-      eyebrow=""
-      title="Aracınızın Beyni Bizde"
-      description="Aracınızın tüm mekanik ve elektronik ihtiyaçları için profesyonel test, tamir, kodlama ve garantili parça çözümleri sunuyoruz."
-      actions={
-        <>
-          <div className="w-full max-w-2xl">
-            <Suspense fallback={<div className="h-14 animate-pulse rounded-2xl border border-white/20 bg-white/10 shadow-sm" aria-hidden="true" />}>
-              <OemSearchBar variant="hero" />
-            </Suspense>
-          </div>
-          <div className="grid w-full grid-cols-2 gap-3 sm:flex sm:w-auto sm:items-center">
-            <Button asChild variant="default" size="lg" className="px-4 text-sm sm:px-7 sm:text-base">
-              <Link href="/parcalar">
-                Parçaları İncele
-                <ArrowRight className="hidden h-4 w-4 sm:block" aria-hidden="true" />
-              </Link>
-            </Button>
-            <Button asChild variant="darkOutline" size="lg" className="px-4 text-sm sm:px-7 sm:text-base">
-              <Link href="/tamirveservis">Tamir & Servis</Link>
-            </Button>
-          </div>
-        </>
-      }
-    />
-  );
-}
-
 const homeBenefits = [
   {
     icon: ShieldCheck,
     title: "Uzman Kadro",
-    description: "Deneyimli teknisyenler",
+    description: "Alanında uzman ekibimizle profesyonel onarım.",
   },
   {
-    icon: Wrench,
+    icon: Cog,
     title: "Orijinal Ekipman",
-    description: "Profesyonel test cihazları",
+    description: "En son teknoloji cihazlarla yüksek hassasiyet.",
   },
   {
-    icon: Clock,
-    title: "Hızlı Çözüm",
-    description: "Zamanında teslimat",
+    icon: RefreshCw,
+    title: "Hızlı Tamir",
+    description: "Zamanında teslim, kesintisiz sürüş keyfi.",
   },
   {
-    icon: CheckCircle2,
+    icon: BadgeCheck,
     title: "Güvenilir Hizmet",
-    description: "Garantili onarım & parça",
+    description: "Garantili tamir, kalıcı çözümler.",
+  },
+  {
+    icon: Car,
+    title: "Tüm Opel Modelleri",
+    description: "Astra, Corsa, Insignia, Zafira ve daha fazlası...",
   },
 ];
-
-function StatsSection() {
-  return (
-    <section className="container py-12 sm:py-16">
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 md:grid-cols-4">
-        {[
-          ["15.000+", "Stoklu parça"],
-          ["32+", "Araç markası"],
-          ["1.000+", "ECU modeli"],
-          ["20+", "Yıllık tecrübe"],
-        ].map(([value, label]) => (
-          <div key={label} className="bg-white px-4 py-6 text-center sm:px-6 sm:py-8">
-            <div className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">{value}</div>
-            <div className="mt-1 text-sm font-medium text-slate-600">{label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function CardGridSkeleton() {
   return (
@@ -142,7 +95,7 @@ function CardGridSkeleton() {
 
 function SectionCardsSkeleton() {
   return (
-    <section className="container pb-14 sm:pb-20" aria-hidden="true">
+    <section className="container pt-14 pb-14 sm:pt-20 sm:pb-20" aria-hidden="true">
       <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div className="h-8 w-44 animate-pulse rounded-lg bg-slate-200" />
         <div className="h-9 w-28 animate-pulse rounded-full bg-slate-200" />
@@ -213,7 +166,7 @@ async function CategoriesSection() {
   if (!categories || categories.length === 0) return null;
 
   return (
-    <section className="container pb-14 sm:pb-20">
+    <section className="container pt-14 pb-14 sm:pt-20 sm:pb-20">
       <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -350,9 +303,9 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(WEBSITE_JSON_LD) }}
       />
 
-      <HeroSection />
-      <TrustBadgeStrip items={homeBenefits} />
-      <StatsSection />
+      <OpelHero />
+      <TrustBadgeStrip items={homeBenefits} variant="hero" />
+      <TransmissionServiceCards />
 
       <Suspense fallback={<SectionCardsSkeleton />}>
         <CategoriesSection />
@@ -366,9 +319,7 @@ export default function HomePage() {
         <BrandsSection />
       </Suspense>
 
-      <section className="container py-14 sm:py-20">
-        <ProblemCta />
-      </section>
+      <LatestVideos />
     </>
   );
 }

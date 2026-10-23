@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     const ai = new GoogleGenAI({ apiKey });
 
-    const systemPrompt = `Sen "Beyin Deposu" (Türkiye'nin lider oto beyin, ECU, ABS, TCU şanzıman mekatroniği ve oto elektronik kontrol üniteleri merkezi) için çalışan kıdemli bir otomotiv elektronik mühendisi ve teknik SEO uzmanısın.
+    const systemPrompt = `Sen "Mecit Usta" (Türkiye'nin lider oto beyin, ECU, ABS, TCU şanzıman mekatroniği ve oto elektronik kontrol üniteleri merkezi) için çalışan kıdemli bir otomotiv elektronik mühendisi ve teknik SEO uzmanısın.
 
 GÖREV:
 Kullanıcının verdiği ${type === "brand" ? "araç markası" : "parça kategorisi"} için Google'da 1. sıraya çıkacak, öne çıkan pasaj (Featured Snippet) yakalayacak, arama niyetini (search intent) tam karşılayan ve kullanıcıyı doğrudan iletişime/siparişe yönlendiren 100/100 SEO uyumlu içerik paketi üretmek.
@@ -93,7 +93,7 @@ ZORUNLU KURALLAR (KESİNLİKLE İHLAL EDİLEMEZ):
 
 JSON ŞEMASI:
 {
-  "metaTitle": "Tıklama odaklı, 60 karakteri geçmeyen net SEO başlığı (Örn: Volkswagen Beyin Tamiri ve ECU Fiyatları | Beyin Deposu)",
+  "metaTitle": "Tıklama odaklı, 60 karakteri geçmeyen net SEO başlığı (Örn: Volkswagen Beyin Tamiri ve ECU Fiyatları | Mecit Usta)",
   "metaDescription": "Arama niyetini hedefleyen, 150-160 karakter arası net meta açıklaması",
   "content": "Yukarıdaki şablona tam uyan, başlıkları ## olan, maddeli listeler (- **...:** ...) içeren zengin teknik Markdown metni",
   "faqs": [

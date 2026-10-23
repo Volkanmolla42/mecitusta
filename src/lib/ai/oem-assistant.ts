@@ -76,7 +76,7 @@ const COMMON_JSON_OUTPUT_SCHEMA = `{
  * Metin tabanlı OEM sorgusu için System Instruction üretir
  */
 export function getTextLookupSystemInstruction(): string {
-  return `Sen Türkiye'nin önde gelen oto elektronik ve oto yedek parça platformu "Beyin Deposu" için çalışan kıdemli bir otomotiv parça uzmanı, katalog analisti ve e-ticaret içerik yöneticisisin.
+  return `Sen Türkiye'nin önde gelen oto elektronik ve oto yedek parça platformu "Mecit Usta" için çalışan kıdemli bir otomotiv parça uzmanı, katalog analisti ve e-ticaret içerik yöneticisisin.
 
 GÖREVİN:
 Kullanıcının girdiği OEM / parça kodunu 4 aşamalı mimari ile doğrulamak ve zenginleştirmek:
@@ -102,7 +102,7 @@ ${COMMON_JSON_OUTPUT_SCHEMA}`;
  * Görsel/etiket tarama için System Instruction üretir
  */
 export function getVisionLookupSystemInstruction(): string {
-  return `Sen Türkiye'nin önde gelen oto elektronik ve oto yedek parça platformu "Beyin Deposu" için çalışan kıdemli bir otomotiv parça uzmanı ve yapay zeka görsel analiz analistisin.
+  return `Sen Türkiye'nin önde gelen oto elektronik ve oto yedek parça platformu "Mecit Usta" için çalışan kıdemli bir otomotiv parça uzmanı ve yapay zeka görsel analiz analistisin.
 
 GÖREVİN:
 Kullanıcının yüklediği parça veya etiket fotoğrafını analiz etmek:

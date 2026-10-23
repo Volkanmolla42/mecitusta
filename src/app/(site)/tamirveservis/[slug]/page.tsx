@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import HeroBanner from "@/components/ui/HeroBanner";
 import { Button } from "@/components/ui/button";
-import ProblemCta from "@/components/ProblemCta";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import {
   getServiceBySlug,
@@ -48,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!service) notFound();
 
-  const title = `${service.title} | Beyin Deposu Tamir & Servis`;
+  const title = `${service.title} | Mecit Usta Tamir & Servis`;
   const description = metadataDescription(
     service.fullDesc || service.shortDesc,
     160
@@ -92,7 +91,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const phoneNumber = contactSettings?.phoneNumber || "";
   const whatsappUrl = getWhatsAppUrl(
     {
-      message: `Merhaba Beyin Deposu, ${service.title} hizmeti için randevu ve bilgi almak istiyorum.`,
+      message: `Merhaba Mecit Usta, ${service.title} hizmeti için randevu ve bilgi almak istiyorum.`,
     },
     phoneNumber
   );
@@ -389,10 +388,6 @@ export default async function ServiceDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* Problem CTA */}
-        <section className="mt-16 sm:mt-24">
-          <ProblemCta />
-        </section>
       </div>
     </div>
   );

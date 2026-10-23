@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
-  appleWebApp: { title: "BeyinDeposu" },
+  appleWebApp: { title: "Mecit Usta" },
   creator: SITE_NAME,
   robots: {
     index: true,
